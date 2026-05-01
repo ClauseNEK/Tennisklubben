@@ -7,10 +7,13 @@ TennisklubbemSmash
 │   └── MenuUI.java
 │
 ├── model
-│   ├── Member.java       -- Abstarct klasse
-│   ├── ActiveMember.java
-│   ├── PassiveMember.java
-│   ├── CompetitionPlayer.java
+│   ├── Member.java          -- Abstarct klasse
+│   ├── ActiveMember.java    -- Interface
+│   ├── PassiveMember.java      Interface
+│   ├── JuniorMember.java    -- Subklasse
+│   ├── SeniorMember.java    -- Subklasse
+│   ├── ExerciseMember.java     Interface
+│   ├── CompetitionPlayer.java  Interface
 │   ├── TrainingResult.java
 │   ├── Tournament.java
 │   └── Payment.java
