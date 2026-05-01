@@ -1,34 +1,45 @@
-Tennisklubben ' Smash
+TennisklubbemSmash
 │
 ├── main
-│   └──
+│   └── Main.java
 │
 ├── ui
-│   └──
+│   └── MenuUI.java
 │
 ├── model
-│   ├──
-│   ├──
-│   ├──
-│   ├──
-│   ├──
-│   ├──
-│   └──
+│   ├── Member.java       -- Abstarct klasse
+│   ├── ActiveMember.java
+│   ├── PassiveMember.java
+│   ├── CompetitionPlayer.java
+│   ├── TrainingResult.java
+│   ├── Tournament.java
+│   └── Payment.java
 │
 ├── service
-│   └──
+│   ├── MemberService.java
+│   ├── PaymentService.java
+│   └── CoachService.java
 │
 ├── file
-│   ├──
-│   └──
+│   ├── CsvReader.java
+│   └── CsvWriter.java
 │
 ├── util
-│    ├──
-│    ├──
-│    └──
+│   ├── MemberComparator.java
+│   ├── PaymentComparator.java
+│   ├── InputValidator.java
+│   └── Logger.java
 │
+├── interfaces
+│   ├── Payable.java
+│   └── Rankable.java
 │
-│── Test
-│    ├──
-│    ├──
-│    └──
+├── exceptions
+│   ├── MemberNotFoundException.java
+│   ├── InvalidAgeException.java
+│   └── CsvFileException.java
+│
+└── test
+    ├── MemberServiceTest.java
+    ├── PaymentServiceTest.java
+    └── CsvReaderTest.java
