@@ -1,0 +1,21 @@
+name: Discord notifikation ved push
+
+on: [push]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send besked til Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"Nyt push til Smash-projektet\",
+                \"description\": \"**${{ github.actor }}** pushede til **${{ github.ref_name }}**\",
+                \"color\": 3066993
+              }]
+            }"
