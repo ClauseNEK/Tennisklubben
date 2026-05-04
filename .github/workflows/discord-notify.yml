@@ -43,7 +43,7 @@ jobs:
                     \"value\": \"${{ github.event.head_commit.message }}\"
                   },
                   {
-                    \"name\": \"Ændrede filer\",
+                    \"name\": \"Aendrede filer\",
                     \"value\": \"${{ steps.changed.outputs.files }}\"
                   },
                   {
@@ -52,7 +52,7 @@ jobs:
                   }
                 ],
                 \"footer\": {
-                  \"text\": \"Tidspunkt: ${{ github.event.head_commit.timestamp }}\"
+                  \"text\": \"${{ github.event.head_commit.timestamp }}\"
                 }
               }]
             }"
