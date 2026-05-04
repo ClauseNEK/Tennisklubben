@@ -43,7 +43,7 @@ jobs:
                     \"value\": \"${{ github.event.head_commit.message }}\"
                   },
                   {
-                    \"name\": \"Aendrede filer\",
+                    \"name\": \"Ændrede filer\",
                     \"value\": \"${{ steps.changed.outputs.files }}\"
                   },
                   {
@@ -52,7 +52,7 @@ jobs:
                   }
                 ],
                 \"footer\": {
-                  \"text\": \"${{ github.event.head_commit.timestamp }}\"
+                  \"text\": \"Pushet d. ${{ github.event.head_commit.timestamp }}\"
                 }
               }]
             }"
