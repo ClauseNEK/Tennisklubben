@@ -18,7 +18,7 @@ TennisklubbemSmash
 │   ├── Tournament.java
 │   └── Payment.java
 │
-├── service
+├── service (Tilføjet)
 │   ├── MemberService.java
 │   ├── PaymentService.java
 │   └── CoachService.java
