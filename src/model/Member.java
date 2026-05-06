@@ -4,7 +4,7 @@ package model;
 public abstract class Member implements Membership  {
 
     private String name;
-    private int age;
+    private int age; //Implementer fødselsdags dato
     private Membership membership;
     private int memberid;
     private Disciplin disciplin;
@@ -64,5 +64,8 @@ public abstract class Member implements Membership  {
                 + "\nAktivitetsform:" + gameCategory;
     }
 
+    public String toCSV() {
+        return name + age + membership + memberid + disciplin + gameCategory;
+    }
 
 }
