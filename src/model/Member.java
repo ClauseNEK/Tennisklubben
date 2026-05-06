@@ -1,17 +1,17 @@
 package model;
 
 //Abstract klasse
-public abstract class Member  {
+public abstract class Member implements Membership  {
 
     private String name;
     private int age;
-    private boolean membership;
+    private Membership membership;
     private int memberid;
     private Disciplin disciplin;
     private GameCategory gameCategory;
 
 
-    public Member(String name, int age, boolean membership, int memberid, GameCategory gameCategory, Disciplin disciplin){
+    public Member(String name, int age, Membership membership, int memberid, GameCategory gameCategory, Disciplin disciplin){
         memberid++;
         this.name = name;
         this.age = age;
@@ -30,7 +30,7 @@ public abstract class Member  {
         return age;
     }
 
-    public boolean getMembership(){
+    public Membership getMembership(){
         return membership;
     }
 
