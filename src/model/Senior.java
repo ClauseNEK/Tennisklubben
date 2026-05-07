@@ -11,7 +11,7 @@ public class Senior extends Member {
         return 1500*0.25;
     }
 
-    //to be fixed (after if stuff)
+
     @Override
     public double getPayment() {
         if (membership()) {

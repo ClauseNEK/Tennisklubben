@@ -7,7 +7,7 @@ public class Junior extends Member {
         super(name, age, activeMembership, memberid, disciplin, gameCategory);
     }
 
-    //to be fixed (after if stuff)
+
     @Override
     public double getPayment() {
         if (membership()) {
