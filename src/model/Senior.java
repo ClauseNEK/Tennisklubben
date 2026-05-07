@@ -3,8 +3,8 @@ package model;
 public class Senior extends Member {
 
     //kontruktør
-    public Senior(String name, int age, Membership membership, int memberid, GameCategory gameCategory, Disciplin disciplin) {
-        super(name, age, membership, memberid, gameCategory, disciplin);
+    public Senior(String name, int age, boolean activeMembership, int memberid, Disciplin disciplin, GameCategory gameCategory) {
+        super(name, age, activeMembership, memberid, disciplin, gameCategory);
     }
 
     public double sixtyPlusDiscount(){
@@ -14,7 +14,7 @@ public class Senior extends Member {
     //to be fixed (after if stuff)
     @Override
     public double getPayment() {
-        if (getMembership().membership()) {
+        if (membership()) {
             if (getAge() > 60) {
                 return 1500-sixtyPlusDiscount();
             }

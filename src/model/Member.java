@@ -5,19 +5,26 @@ public abstract class Member implements Membership  {
 
     private String name;
     private int age; //Implementer fødselsdags dato
-    private Membership membership;
+    private boolean activeMembership;
     private int memberid;
     private Disciplin disciplin;
     private GameCategory gameCategory;
 
 
-    public Member(String name, int age, Membership membership, int memberid, GameCategory gameCategory, Disciplin disciplin){
-        memberid++;
+    public Member(String name, int age, boolean activeMembership, int memberid, Disciplin disciplin, GameCategory gameCategory){
+        //memberid++;
+        this.memberid = memberid;
         this.name = name;
         this.age = age;
-        this.membership = membership;
+        this.activeMembership = activeMembership;
         this.gameCategory = gameCategory;
         this.disciplin = disciplin;
+    }
+
+    //Overrider interface metode, samt er en getters for boolean "activeMembership"
+    @Override
+    public boolean membership() {
+        return activeMembership;
     }
 
 
@@ -28,10 +35,6 @@ public abstract class Member implements Membership  {
 
     public int getAge(){
         return age;
-    }
-
-    public Membership getMembership(){
-        return membership;
     }
 
     public int getMemberid(){
@@ -51,21 +54,45 @@ public abstract class Member implements Membership  {
 
 
     // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setMembership(boolean membership) {
+        this.activeMembership = membership;
+    }
+
+    public void setDisciplin(Disciplin disciplin) {
+        this.disciplin = disciplin;
+    }
+
+    public void setGameCategory(GameCategory gameCategory) {
+        this.gameCategory = gameCategory;
+    }
 
 
     // TooString metode
     @Override
     public String toString(){
         return "Navn: " + name
-                + "\nalder:" + age
-                + "\nMedlemskab" + membership
-                + "\nMedlemsID" + memberid
+                + "\nAlder: " + age
+                + "\nMedlemskab: " + activeMembership
+                + "\nMedlemsID: " + memberid
                 + "\nDisciplin: " + disciplin
-                + "\nAktivitetsform:" + gameCategory;
+                + "\nAktivitetsform: " + gameCategory;
     }
 
     public String toCSV() {
-        return name + age + membership + memberid + disciplin + gameCategory;
+        return name + "," +
+                age + "," +
+                activeMembership + "," +
+                memberid + "," +
+                disciplin + "," +
+                gameCategory;
     }
 
 }
