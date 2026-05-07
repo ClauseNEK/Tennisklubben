@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class FileHandlerMembers {
 
     final static String members = "src/Members";
-    private static ArrayList<Member> memberList = new ArrayList<Member>(); //Dette kunne blive gemt i en Database package for at holde tingene adskilte.
+    public static ArrayList<Member> memberList = new ArrayList<Member>(); //Dette kunne blive gemt i en Database package for at holde tingene adskilte.
 
 
     //Skriver arraylisten til csv filen "members"
@@ -65,12 +65,6 @@ public class FileHandlerMembers {
 
     }
 
-    //Finder det næste medlemsID
-    //Den finder det seneste medlemsID i listen og lægger 1 til.
-    //Denne metode skal kaldes når der oprettes et nyt medlem (int memberID = getNextMemberID())
-    public int getNextMemberID() {
-        return memberList.getLast().getMemberid()+1;
 
-    }
 
 }

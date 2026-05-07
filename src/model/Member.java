@@ -86,10 +86,18 @@ public abstract class Member implements Membership  {
                 + "\nAktivitetsform: " + gameCategory;
     }
 
+    public String convertMembership(){
+        if (membership()){
+            return "aktiv";
+        } else {
+            return "passiv";
+        }
+    }
+
     public String toCSV() {
         return name + "," +
                 age + "," +
-                activeMembership + "," +
+                convertMembership() + "," +
                 memberid + "," +
                 disciplin + "," +
                 gameCategory;

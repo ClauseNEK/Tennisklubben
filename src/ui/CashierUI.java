@@ -10,5 +10,4 @@ public class CashierUI {
         System.out.println("4. Sorter efter beløb");
     }
 
-
 }
