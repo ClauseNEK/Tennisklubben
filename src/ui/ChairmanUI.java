@@ -24,17 +24,23 @@ public class ChairmanUI {
                     case 1:
                         MemberService.addMember();
                         break;
-
+                    case 2:
+                        break;
+                    case 3:
+                        break;
                     case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
                         scanner.close();
                         running = false;
                         break;
-
                     default:
-                        System.out.println("Fejl valg: Vælg et tal mellem 1-3");
+                        System.out.println("Fejl valg: Vælg et tal mellem 1-6");
                 }
             } catch (Exception e){
-                System.out.println("KALD EN EXCEPTION HER!");
+                System.out.println("KALD EN EXCEPTION HER!!!");
             }
         }
     }

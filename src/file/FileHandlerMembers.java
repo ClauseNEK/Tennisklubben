@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FileHandlerMembers {
 
-    final static String members = "src/Members";
+    final static String members = "src/csv/Members";
     public static ArrayList<Member> memberList = new ArrayList<Member>(); //Dette kunne blive gemt i en Database package for at holde tingene adskilte.
 
 
@@ -51,11 +51,11 @@ public class FileHandlerMembers {
                 Disciplin disciplin = Disciplin.valueOf(parts[4]);
                 GameCategory gameCategory = GameCategory.valueOf(parts[5]);
 
-                if(age < 18) {
+                /*if(age < 18) {
                     memberList.add(new Junior(name, age, activeMembership, memberid, disciplin, gameCategory));
                 } else {
                     memberList.add(new Senior(name, age, activeMembership, memberid, disciplin, gameCategory));
-                }
+                }*/
 
             }
 
@@ -63,6 +63,12 @@ public class FileHandlerMembers {
 
         }
 
+    }
+
+
+    public void addMemberToFile(Member member) {
+        memberList.add(member);
+        writeToFile();
     }
 
 

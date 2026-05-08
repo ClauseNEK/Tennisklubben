@@ -1,9 +1,7 @@
 package service;
 
 import file.FileHandlerMembers;
-import model.Disciplin;
-import model.GameCategory;
-import model.Member;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,6 +9,7 @@ import java.util.Scanner;
 import static file.FileHandlerMembers.memberList;
 
 public class MemberService {
+    private static FileHandlerMembers fileHandlerMembers = new FileHandlerMembers();
 
     public static void addMember(){
         System.out.print("Navnet på medlemmet: ");
@@ -20,17 +19,46 @@ public class MemberService {
         System.out.print("Alder på medlemmet: ");
         int age = scanner.nextInt();
 
-        /*System.out.print("Passiv eller aktiv medlemsskab");
-        boolean member = scanner.nextBoolean();
-        if (member== true){
-            setMembership(true);
-        }
-        */
+        boolean membership = chooseMembership(scanner);
+
         // genererer det næste medlemsID
-        int memberID = getNextMemberID();
-        chooseCategory(scanner);
+        //int memberID = getNextMemberID();
+        int fakeMemberID = 1;
+        GameCategory gameCategory = chooseCategory(scanner);
+        Disciplin disciplin = chooseDisciplin(scanner);
+
+        if(age < 18) {
+            fileHandlerMembers.addMemberToFile(new Junior(name, age, membership, fakeMemberID, disciplin, gameCategory));
+        } else {
+            fileHandlerMembers.addMemberToFile(new Senior(name, age, membership, fakeMemberID, disciplin, gameCategory));
+        }
 
     }
+
+    //Vælger om medlemskabet skal være aktivt eller passivt
+    public static boolean chooseMembership(Scanner scanner) {
+        boolean membership = true;
+        int input;
+
+        //while(true) {
+        System.out.println("Vælg medlemskab:\n1.Aktivt\n2.Passivt");
+        input = scanner.nextInt();
+
+        switch (input) {
+            case 1:
+                membership = true;
+                break;
+            case 2:
+                membership = false;
+                break;
+            default:
+                System.out.println("Ukendt input. Tryk 1 eller 2.");
+        }
+        //}
+        return membership;
+
+    }
+
     //Finder det næste medlemsID
     //Den finder det seneste medlemsID i listen og lægger 1 til.
     //Denne metode skal kaldes når der oprettes et nyt medlem (int memberID = getNextMemberID())
@@ -39,6 +67,7 @@ public class MemberService {
 
     }
 
+    //Vælger om medlemmet er konkurrencespiller eller motionist
     public static GameCategory chooseCategory(Scanner scanner){
         GameCategory gameCategory = null;
         String input;
@@ -60,6 +89,28 @@ public class MemberService {
         }
     }
 
+
+
+    public static Disciplin chooseDisciplin(Scanner scanner) {
+        Disciplin disciplin = null;
+        String input;
+
+        while (true) {
+            System.out.println("Er disciplinen single/double/mixed_double?");
+            if(scanner.hasNext()) {
+                input = scanner.nextLine().toUpperCase();
+
+                for (Disciplin d : Disciplin.values()) {
+                    if (d.name().equalsIgnoreCase(input)) {
+                        disciplin = Disciplin.valueOf(input);
+                        return disciplin;
+                    }
+                }
+            } else {
+                System.out.println("Ukendt input :(");
+            }
+        }
+    }
 
 
     //Redigere medlemmets alder og opdatere CSV filen.
