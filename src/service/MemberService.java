@@ -24,14 +24,14 @@ public class MemberService {
 
         // genererer det næste medlemsID
         //int memberID = getNextMemberID();
-        int fakeMemberID = 1;
+
         GameCategory gameCategory = chooseCategory(scanner);
         Disciplin disciplin = chooseDisciplin(scanner);
 
         if(age < 18) {
-            fileHandlerMembers.addMemberToFile(new Junior(name, age, membership, fakeMemberID, disciplin, gameCategory));
+            fileHandlerMembers.addMemberToFile(new Junior(name, age, membership, disciplin, gameCategory));
         } else {
-            fileHandlerMembers.addMemberToFile(new Senior(name, age, membership, fakeMemberID, disciplin, gameCategory));
+            fileHandlerMembers.addMemberToFile(new Senior(name, age, membership, disciplin, gameCategory));
         }
 
     }
@@ -63,9 +63,10 @@ public class MemberService {
     //Finder det næste medlemsID
     //Den finder det seneste medlemsID i listen og lægger 1 til.
     //Denne metode skal kaldes når der oprettes et nyt medlem (int memberID = getNextMemberID())
-    public static int getNextMemberID() {
+    /*public static int getNextMemberID() {
         return memberList.getLast().getMemberid()+1;
-    }
+    }*/
+
 
     //Vælger om medlemmet er konkurrencespiller eller motionist
     public static GameCategory chooseCategory(Scanner scanner){

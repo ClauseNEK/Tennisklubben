@@ -52,9 +52,9 @@ public class FileHandlerMembers {
                 GameCategory gameCategory = GameCategory.valueOf(parts[5]);
 
                 if(age < 18) {
-                    memberList.add(new Junior(name, age, activeMembership, memberid, disciplin, gameCategory));
+                    memberList.add(new Junior(name, age, activeMembership, /*memberid,*/ disciplin, gameCategory));
                 } else {
-                    memberList.add(new Senior(name, age, activeMembership, memberid, disciplin, gameCategory));
+                    memberList.add(new Senior(name, age, activeMembership, /*memberid,*/ disciplin, gameCategory));
                 }
 
             }
