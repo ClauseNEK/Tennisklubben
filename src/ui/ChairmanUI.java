@@ -9,7 +9,7 @@ public class ChairmanUI {
         boolean running = true;
 
         while (true){
-            System.out.println("\n === Formands ===");
+            System.out.println("\n === Formand ===");
             System.out.println("1. Opret nyt medlem");
             System.out.println("2. Redigere medlem");
             System.out.println("3. Vis medlem (navn)");
@@ -25,6 +25,7 @@ public class ChairmanUI {
                         MemberService.addMember();
                         break;
                     case 2:
+                        MemberService.editMemberData(scanner);
                         break;
                     case 3:
                         break;
@@ -44,5 +45,4 @@ public class ChairmanUI {
             }
         }
     }
-
 }

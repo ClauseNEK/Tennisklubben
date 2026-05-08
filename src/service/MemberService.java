@@ -72,8 +72,8 @@ public class MemberService {
     public static GameCategory chooseCategory(Scanner scanner){
         GameCategory gameCategory = null;
         String input;
+        System.out.print("Competition_player eller Exercise_player: ");
         while (true){
-            System.out.print("Competition_player eller Exercise_player");
             if (scanner.hasNext()){
                 input = scanner.nextLine().toUpperCase();
 
@@ -90,14 +90,12 @@ public class MemberService {
         }
     }
 
-
-
     public static Disciplin chooseDisciplin(Scanner scanner) {
         Disciplin disciplin = null;
         String input;
 
         while (true) {
-            System.out.println("Er disciplinen single/double/mixed_double?");
+            System.out.print("Er disciplinen single/double/mixed_double: ");
             if(scanner.hasNext()) {
                 input = scanner.nextLine().toUpperCase();
 
@@ -114,27 +112,56 @@ public class MemberService {
     }
 
 
+/*  Tilføje returns på de enkelte edits
+    public static void editMemberData(Scanner scanner){
+        System.out.println("Hvad ville du ændre?:\n1. Navn \n 2. Alder\n 3. Medlemskab\n 4. Disciplin\n 5. Aktivitetsform");
+        int input = scanner.nextInt();
+
+        switch (input){
+            case 1:
+                //name
+                break;
+            case 2:
+                editMemberAge();
+                break;
+            case 3:
+                editMemberShip();
+                break;
+            case 4:
+                editMemberDisciplin();
+                break;
+            case 5:
+                editMemberGameCategory();
+                break;
+        }
+    }
+*/
+
+
+
+
+
     //Redigere medlemmets alder og opdatere CSV filen.
-    public void editMemberAge(Member member, int newAge) {
+    public static void editMemberAge(Member member, int newAge) {
         member.setAge(newAge);
         //writeToFile();
         //Enten skal writeToFile ske her eller også skal den kaldes når man er færdig med at redigere
     }
 
     //Redigere medlemmets membership (passivt/aktivt) og opdatere CSV filen.
-    public void editMemberShip(Member member, boolean newMemberShip) {
+    public static void editMemberShip(Member member, boolean newMemberShip) {
         member.setMembership(newMemberShip);
         //writeToFile();
     }
 
     //Redigere medlemmets disciplin og opdatere CSV filen.
-    public void editMemberDisciplin(Member member, Disciplin newDisciplin) {
+    public static void editMemberDisciplin(Member member, Disciplin newDisciplin) {
         member.setDisciplin(newDisciplin);
         //writeToFile();
     }
 
     //Redigere medlemmets aktivitetsform (motionist eller konkurrencespiller) og opdatere CSV filen.
-    public void editMemberGameCategory(Member member, GameCategory newGameCategory) {
+    public static void editMemberGameCategory(Member member, GameCategory newGameCategory) {
         member.setGameCategory(newGameCategory);
         //writeToFile();
     }
