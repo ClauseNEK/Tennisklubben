@@ -7,12 +7,13 @@ public abstract class Member implements Membership  {
     private int age; //Implementer fødselsdags dato
     private boolean activeMembership;
     private int memberid;
+    //private static int memberID = 0;
     private Disciplin disciplin;
     private GameCategory gameCategory;
 
 
     public Member(String name, int age, boolean activeMembership, int memberid, Disciplin disciplin, GameCategory gameCategory){
-        //memberid++;
+        //memberID++;
         this.memberid = memberid;
         this.name = name;
         this.age = age;

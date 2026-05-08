@@ -51,11 +51,11 @@ public class FileHandlerMembers {
                 Disciplin disciplin = Disciplin.valueOf(parts[4]);
                 GameCategory gameCategory = GameCategory.valueOf(parts[5]);
 
-                /*if(age < 18) {
+                if(age < 18) {
                     memberList.add(new Junior(name, age, activeMembership, memberid, disciplin, gameCategory));
                 } else {
                     memberList.add(new Senior(name, age, activeMembership, memberid, disciplin, gameCategory));
-                }*/
+                }
 
             }
 
@@ -70,7 +70,6 @@ public class FileHandlerMembers {
         memberList.add(member);
         writeToFile();
     }
-
 
 
 }

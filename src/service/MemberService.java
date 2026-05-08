@@ -12,6 +12,7 @@ public class MemberService {
     private static FileHandlerMembers fileHandlerMembers = new FileHandlerMembers();
 
     public static void addMember(){
+
         System.out.print("Navnet på medlemmet: ");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
@@ -64,7 +65,6 @@ public class MemberService {
     //Denne metode skal kaldes når der oprettes et nyt medlem (int memberID = getNextMemberID())
     public static int getNextMemberID() {
         return memberList.getLast().getMemberid()+1;
-
     }
 
     //Vælger om medlemmet er konkurrencespiller eller motionist
