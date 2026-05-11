@@ -1,6 +1,7 @@
 package ui;
 import java.util.Scanner;
 import service.MemberService;
+import util.MemberAgeComparator;
 import util.MemberNameComparator;
 
 import static file.FileHandlerMembers.memberList;
@@ -35,8 +36,12 @@ public class ChairmanUI {
                         MemberService.showList();
                         break;
                     case 4:
+                        MemberAgeComparator.sortByAge(memberList);
+                        MemberService.showList();
                         break;
                     case 5:
+                        MemberService.removeMember();
+                        MemberService.showList();
                         break;
                     case 6:
                         scanner.close();

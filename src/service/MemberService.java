@@ -210,4 +210,16 @@ public class MemberService {
             }
     }
 
+    public static void removeMember(){
+        System.out.print("indtast medlemsID på medlemmet du vil slette");
+        Scanner scanner = new Scanner(System.in);
+        int medlemsID = scanner.nextInt();
+        Member foundMember = seachForMember(medlemsID);
+        memberList.remove(foundMember);
+        fileHandlerMembers.writeToFile();
+        System.out.print("Medlemmet er nu slettet\n");
+
+    }
+
+
 }
