@@ -1,6 +1,9 @@
 package ui;
 import java.util.Scanner;
 import service.MemberService;
+import util.MemberNameComparator;
+
+import static file.FileHandlerMembers.memberList;
 
 public class ChairmanUI {
 
@@ -28,6 +31,8 @@ public class ChairmanUI {
                         MemberService.editMemberData(scanner);
                         break;
                     case 3:
+                        MemberNameComparator.sortByName(memberList);
+                        MemberService.showList();
                         break;
                     case 4:
                         break;

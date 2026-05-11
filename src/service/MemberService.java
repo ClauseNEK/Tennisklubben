@@ -196,5 +196,18 @@ public class MemberService {
         member.setGameCategory(newGameCategory);
     }
 
+    //Tager arraylisten af medlemmer og printer dem som en string
+    public static void showList() {
+            String allMembers = "";
+
+            if(memberList.isEmpty()) {
+                System.out.println("Listen er tom");
+            } else {
+                for (Member member : memberList) {
+                    allMembers = allMembers.concat(member.toString() + "\n");
+                }
+                System.out.println(allMembers);
+            }
+    }
 
 }

@@ -84,7 +84,7 @@ public abstract class Member implements Membership  {
                 + "\nMedlemskab: " + convertMembership()
                 + "\nMedlemsID: " + memberid
                 + "\nDisciplin: " + disciplin
-                + "\nAktivitetsform: " + gameCategory;
+                + "\nAktivitetsform: " + gameCategory + "\n";
     }
 
     public String convertMembership(){
