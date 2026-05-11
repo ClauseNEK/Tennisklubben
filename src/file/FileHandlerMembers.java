@@ -47,20 +47,20 @@ public class FileHandlerMembers {
                 String name = parts[0];
                 int age = Integer.parseInt(parts[1]);
                 boolean activeMembership = Boolean.parseBoolean(parts[2]);
-                int memberid = Integer.parseInt(parts[3]);
+                //int memberid = Integer.parseInt(parts[3]);
                 Disciplin disciplin = Disciplin.valueOf(parts[4]);
                 GameCategory gameCategory = GameCategory.valueOf(parts[5]);
 
                 if(age < 18) {
-                    memberList.add(new Junior(name, age, activeMembership, /*memberid,*/ disciplin, gameCategory));
+                    memberList.add(new Junior(name, age, activeMembership, disciplin, gameCategory));
                 } else {
-                    memberList.add(new Senior(name, age, activeMembership, /*memberid,*/ disciplin, gameCategory));
+                    memberList.add(new Senior(name, age, activeMembership, disciplin, gameCategory));
                 }
 
             }
 
         } catch (Exception e){
-
+            e.printStackTrace();
         }
 
     }

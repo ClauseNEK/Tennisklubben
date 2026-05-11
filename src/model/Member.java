@@ -81,7 +81,7 @@ public abstract class Member implements Membership  {
     public String toString(){
         return "Navn: " + name
                 + "\nAlder: " + age
-                + "\nMedlemskab: " + activeMembership
+                + "\nMedlemskab: " + convertMembership()
                 + "\nMedlemsID: " + memberid
                 + "\nDisciplin: " + disciplin
                 + "\nAktivitetsform: " + gameCategory;

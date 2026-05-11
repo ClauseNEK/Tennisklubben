@@ -8,7 +8,7 @@ public class ChairmanUI {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
-        while (true){
+        while (running){
             System.out.println("\n === Formand ===");
             System.out.println("1. Opret nyt medlem");
             System.out.println("2. Redigere medlem");
