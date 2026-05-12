@@ -197,13 +197,13 @@ public class MemberService {
     }
 
     //Tager arraylisten af medlemmer og printer dem som en string
-    public static void showList() {
+    public static void showList(ArrayList<Member> memberArrayList) {
             String allMembers = "";
 
-            if(memberList.isEmpty()) {
+            if(memberArrayList.isEmpty()) {
                 System.out.println("Listen er tom");
             } else {
-                for (Member member : memberList) {
+                for (Member member : memberArrayList) {
                     allMembers = allMembers.concat(member.toString() + "\n");
                 }
                 System.out.println(allMembers);

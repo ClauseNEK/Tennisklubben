@@ -20,7 +20,7 @@ public class ChairmanUI {
             System.out.println("4. Vis medlem (alder)");
             System.out.println("5. Slet medlem");
             System.out.println("6. Gå tilbage");
-            try{
+            try {
                 int input = Integer.parseInt(scanner.nextLine());
 
                 switch (input){
@@ -33,18 +33,17 @@ public class ChairmanUI {
                         break;
                     case 3:
                         MemberNameComparator.sortByName(memberList);
-                        MemberService.showList();
+                        MemberService.showList(memberList);
                         break;
                     case 4:
                         MemberAgeComparator.sortByAge(memberList);
-                        MemberService.showList();
+                        MemberService.showList(memberList);
                         break;
                     case 5:
                         MemberService.removeMember();
-                        MemberService.showList();
+                        MemberService.showList(memberList);
                         break;
                     case 6:
-                        scanner.close();
                         running = false;
                         break;
                     default:

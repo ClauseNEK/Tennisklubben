@@ -1,5 +1,9 @@
 package model;
 
+import service.PaymentService;
+
+import java.time.LocalDate;
+
 //Abstract klasse
 public abstract class Member implements Membership  {
 
@@ -11,6 +15,10 @@ public abstract class Member implements Membership  {
     private Disciplin disciplin;
     private GameCategory gameCategory;
 
+    //Bruges til kassereren
+    private String paymentStatus;
+    private LocalDate localDate;
+
 
     public Member(String name, int age, boolean activeMembership, Disciplin disciplin, GameCategory gameCategory){
         memberIDCounter++;
@@ -21,6 +29,14 @@ public abstract class Member implements Membership  {
         this.gameCategory = gameCategory;
         this.disciplin = disciplin;
     }
+
+    public Member(int memberid, String paymentStatus, LocalDate localDate) {
+        //memberIDCounter++;
+        this.memberid = memberIDCounter;
+        this.paymentStatus = paymentStatus;
+        this.localDate = localDate;
+    }
+
 
     //Overrider interface metode, samt er en getters for boolean "activeMembership"
     @Override
@@ -50,8 +66,16 @@ public abstract class Member implements Membership  {
         return gameCategory;
     }
 
-    public abstract double getPayment();
+    public String getPaymentstatus() {
+        return paymentStatus;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
     // Udregner kontigentbeløbet:
+    //public abstract double getPayment();
 
 
     // Setters
@@ -95,13 +119,19 @@ public abstract class Member implements Membership  {
         }
     }
 
-    public String toCSV() {
+    public String toMemberCSV() {
         return name + "," +
                 age + "," +
                 convertMembership() + "," +
                 memberid + "," +
                 disciplin + "," +
                 gameCategory;
+    }
+
+    public String toPaymentCSV() {
+        return memberid + "," +
+                paymentStatus + "," +
+                localDate;
     }
 
 }

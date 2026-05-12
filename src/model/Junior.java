@@ -1,4 +1,7 @@
 package model;
+
+import java.time.LocalDate;
+
 //
 public class Junior extends Member {
 
@@ -7,14 +10,18 @@ public class Junior extends Member {
         super(name, age, activeMembership, disciplin, gameCategory);
     }
 
+    public Junior(int memberid, String paymentStatus, LocalDate localDate) {
+        super(memberid, paymentStatus, localDate);
+    }
 
-    @Override
+
+    /*@Override
     public double getPayment() {
         if (membership()) {
             return 800;
         } else {
             return 250;
         }
-    }
+    }*/
 
 }

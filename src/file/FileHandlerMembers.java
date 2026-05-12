@@ -21,7 +21,7 @@ public class FileHandlerMembers {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for (Member member : memberList) {
-                bufferedWriter.write(member.toCSV());
+                bufferedWriter.write(member.toMemberCSV());
                 bufferedWriter.newLine();
             }
 
