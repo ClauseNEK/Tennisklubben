@@ -1,11 +1,10 @@
 package file;
 
+import exceptions.CsvFileException;
+import exceptions.InvalidAgeException;
 import model.*;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 public class FileHandlerMembers {
@@ -15,56 +14,63 @@ public class FileHandlerMembers {
 
 
     //Skriver arraylisten til csv filen "members"
-    public void writeToFile() {
-        try {
-            FileWriter fileWriter = new FileWriter(members);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+    // Tilføjet: Exception
+    // Rettet: BufferedWriter oppe i paramteren)
 
+    public void writeToFile() {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(members))) {
             for (Member member : memberList) {
                 bufferedWriter.write(member.toMemberCSV());
                 bufferedWriter.newLine();
             }
-
-            bufferedWriter.close();
-
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            throw new CsvFileException("Kunne ikke skrive til medlemsfilen: " + e.getMessage());
         }
-
     }
 
     //Læser CSV filen "members"
     public void readCSV() {
 
-        try (BufferedReader reader =
-                     new BufferedReader(new FileReader(members))) {
-
+        try (BufferedReader reader = new BufferedReader(new FileReader(members))) {
             String line;
-
+            int linenumber = 0;
             while ((line = reader.readLine()) != null) {
+                linenumber++;
                 String[] parts = line.split(",");
 
-                String name = parts[0];
-                int age = Integer.parseInt(parts[1]);
-                boolean activeMembership = Boolean.parseBoolean(parts[2]);
-                //int memberid = Integer.parseInt(parts[3]);
-                Disciplin disciplin = Disciplin.valueOf(parts[4]);
-                GameCategory gameCategory = GameCategory.valueOf(parts[5]);
-
-                if(age < 18) {
-                    memberList.add(new Junior(name, age, activeMembership, disciplin, gameCategory));
-                } else {
-                    memberList.add(new Senior(name, age, activeMembership, disciplin, gameCategory));
+                if (parts.length < 6) {
+                    throw new CsvFileException("Forkerte antal felter på linjer" + linenumber);
                 }
 
+
+                try {
+                    String name = parts[0];
+                    int age = Integer.parseInt(parts[1]);
+
+                    if (age < 0 || age > 120) {
+                        throw new InvalidAgeException(
+                                "Ugyldig alder (" + age + ") på linje " + linenumber);
+                    }
+
+                    boolean activeMembership = Boolean.parseBoolean(parts[2]);
+                    Disciplin disciplin = Disciplin.valueOf(parts[4]);
+                    GameCategory gameCategory = GameCategory.valueOf(parts[5]);
+
+                    if (age < 18) {
+                        memberList.add(new Junior(name, age, activeMembership, disciplin, gameCategory));
+                    } else {
+                        memberList.add(new Senior(name, age, activeMembership, disciplin, gameCategory));
+                    }
+                } catch (IllegalArgumentException e) {
+                    // IllegalArgumentException dækker også Disciplin.valueOf/GameCategory med value.of
+                    throw new CsvFileException(
+                            "Kunne ikke parse linje " + linenumber + ": " + e.getMessage());
+                }
             }
-
-        } catch (Exception e){
-            e.printStackTrace();
+        } catch (IOException e) {
+            throw new CsvFileException("Kunne ikke læse medlemsfilen: " + e.getMessage());
         }
-
     }
-
 
     public void addMemberToFile(Member member) {
         memberList.add(member);

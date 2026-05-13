@@ -1,5 +1,6 @@
 package file;
 
+import exceptions.CsvFileException;
 import model.*;
 
 import java.io.BufferedWriter;
@@ -27,9 +28,8 @@ public class FileHandlerPayment {
             bufferedWriter.close();
 
         } catch (Exception e) {
-
+            throw new CsvFileException("Kunne ikke skrive til payments filen" + e.getMessage());
         }
-
     }
 
 
