@@ -33,6 +33,7 @@ public class PaymentService {
 
             fileHandlerPayment.addMemberToPaymentFile(member, payment, paymentStatus);
 
+
         }
 
     }
@@ -65,5 +66,16 @@ public class PaymentService {
         return status;
 
     }
+    /*public static void showMembersInArrears() {
+        System.out.println("Medlemmer i restance:");
+    }*/
+    public static void showPaymentsSortedByName() {
+    }
 
+    public static void showPaymentsSortedByAmount() {
+    }
+
+    public static double calculatePayment(Member member) {
+        return 0;
+    }
 }

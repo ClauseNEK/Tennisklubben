@@ -32,10 +32,13 @@ public class CashierUI {
                         PaymentService.addPaymentToMember();
                         break;
                     case 2:
+                        /*PaymentService.showMembersInArrears();*/
                         break;
                     case 3:
+                        PaymentService.showPaymentsSortedByName();
                         break;
                     case 4:
+                        PaymentService.showPaymentsSortedByAmount();
                         break;
                     case 5:
                         running = false;
