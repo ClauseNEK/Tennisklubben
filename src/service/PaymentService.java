@@ -31,8 +31,7 @@ public class PaymentService {
                 payment = 250;
             }
 
-            fileHandlerPayment.addMemberToPaymentFile(member, payment/*, paymentStatus*/);
-
+            fileHandlerPayment.addMemberToPaymentFile(member, payment, paymentStatus);
 
         }
 

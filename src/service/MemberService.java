@@ -1,8 +1,10 @@
 package service;
 
+import exceptions.InvalidAgeException;
 import file.FileHandlerMembers;
 import model.*;
 import ui.ChairmanUI;
+import validation.MemberAgeValidator;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -178,7 +180,12 @@ public class MemberService {
 
     //Redigere medlemmets alder
     public static void editMemberAge(Member member, int newAge) {
-        member.setAge(newAge);
+        member.setValidator(new MemberAgeValidator());
+        try {
+            member.setAge(newAge);
+        } catch (InvalidAgeException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
     }
 
     //Redigere medlemmets membership (passivt/aktivt)

@@ -1,6 +1,8 @@
 package model;
 
+import exceptions.InvalidAgeException;
 import service.PaymentService;
+import validation.AgeValidator;
 
 import java.time.LocalDate;
 
@@ -18,6 +20,9 @@ public abstract class Member implements Membership  {
     //Bruges til kassereren
     private String paymentStatus;
     private LocalDate localDate;
+
+    //Validator
+    private AgeValidator validator;
 
 
     public Member(String name, int age, boolean activeMembership, Disciplin disciplin, GameCategory gameCategory){
@@ -83,7 +88,8 @@ public abstract class Member implements Membership  {
         this.name = name;
     }
 
-    public void setAge(int age) {
+    public void setAge(int age) throws InvalidAgeException {
+        validator.validate(age);
         this.age = age;
     }
 
@@ -97,6 +103,10 @@ public abstract class Member implements Membership  {
 
     public void setGameCategory(GameCategory gameCategory) {
         this.gameCategory = gameCategory;
+    }
+
+    public void setValidator(AgeValidator validator) {
+        this.validator = validator;
     }
 
 

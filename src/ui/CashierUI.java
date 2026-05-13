@@ -22,6 +22,7 @@ public class CashierUI {
             System.out.println("2. Oversigt over medlemmer i restance"); //comparable sortering?
             System.out.println("3. Sorter efter navn");
             System.out.println("4. Sorter efter beløb");
+            System.out.println("5. Gå tilbage");
 
             try {
                 int input = Integer.parseInt(scanner.nextLine());
@@ -36,8 +37,11 @@ public class CashierUI {
                         break;
                     case 4:
                         break;
+                    case 5:
+                        running = false;
+                        break;
                     default:
-                        System.out.println("Ukendt input. Indtast et tal mellem 1-4");
+                        System.out.println("Ukendt input. Indtast et tal mellem 1-5");
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
