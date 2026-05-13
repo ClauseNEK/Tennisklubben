@@ -10,6 +10,8 @@ import static file.FileHandlerPayment.memberPaymentList;
 
 public class CashierUI {
 
+    private static FileHandlerPayment fileHandlerPayment = new FileHandlerPayment();
+
     public static void showCashier(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -34,8 +36,10 @@ public class CashierUI {
                         FileHandlerPayment.printRestance();
                         break;
                     case 3:
+                        PaymentService.showPaymentsSortedByName();
                         break;
                     case 4:
+                        PaymentService.showPaymentsSortedByAmount();
                         break;
                     case 5:
                         running = false;

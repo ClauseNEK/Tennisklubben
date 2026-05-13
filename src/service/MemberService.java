@@ -1,6 +1,7 @@
 package service;
 
 import exceptions.InvalidAgeException;
+import exceptions.MemberNotFoundException;
 import file.FileHandlerMembers;
 import model.*;
 import ui.ChairmanUI;
@@ -121,54 +122,58 @@ public class MemberService {
 
         System.out.print("Indtast medlemsID på det medlem du gerne vil ændre: ");
         int findID = scanner.nextInt();
-        Member foundMember = seachForMember(findID);
+        try {
+            Member foundMember = seachForMember(findID);
+            while(running) {
+                System.out.println("\nHvad ville du ændre?:\n1. Navn \n2. Alder\n3. Medlemskab\n4. Disciplin\n5. Aktivitetsform\n6. Gem");
+                int input = scanner.nextInt();
+                scanner.nextLine();
 
-        while(running) {
-            System.out.println("\nHvad ville du ændre?:\n1. Navn \n2. Alder\n3. Medlemskab\n4. Disciplin\n5. Aktivitetsform\n6. Gem");
-            int input = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (input){
-                case 1:
-                    System.out.print("Indtast det nye navn: ");
-                    String newName = scanner.nextLine();
-                    editMemberName(foundMember, newName); //Der skal kaldes en exception til hvis foundMember er null, notFound eller OutOfBounds
-                    break;
-                case 2:
-                    System.out.print("Indtast den nye alder: ");
-                    int newAge = scanner.nextInt();
-                    editMemberAge(foundMember, newAge);
-                    break;
-                case 3:
-                    boolean newMembership = chooseMembership(scanner);
-                    editMemberShip(foundMember, newMembership);
-                    break;
-                case 4:
-                    Disciplin newDiscipline = chooseDisciplin(scanner);
-                    editMemberDisciplin(foundMember, newDiscipline);
-                    break;
-                case 5:
-                    GameCategory newGameCategory = chooseCategory(scanner);
-                    editMemberGameCategory(foundMember, newGameCategory);
-                    break;
-                case 6:
-                    fileHandlerMembers.writeToFile();
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Ukendt input. Indtast et tal mellem 1-6");
+                switch (input){
+                    case 1:
+                        System.out.print("Indtast det nye navn: ");
+                        String newName = scanner.nextLine();
+                        editMemberName(foundMember, newName); //Der skal kaldes en exception til hvis foundMember er null, notFound eller OutOfBounds
+                        break;
+                    case 2:
+                        System.out.print("Indtast den nye alder: ");
+                        int newAge = scanner.nextInt();
+                        editMemberAge(foundMember, newAge);
+                        break;
+                    case 3:
+                        boolean newMembership = chooseMembership(scanner);
+                        editMemberShip(foundMember, newMembership);
+                        break;
+                    case 4:
+                        Disciplin newDiscipline = chooseDisciplin(scanner);
+                        editMemberDisciplin(foundMember, newDiscipline);
+                        break;
+                    case 5:
+                        GameCategory newGameCategory = chooseCategory(scanner);
+                        editMemberGameCategory(foundMember, newGameCategory);
+                        break;
+                    case 6:
+                        fileHandlerMembers.writeToFile();
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Ukendt input. Indtast et tal mellem 1-6");
+                }
             }
+        } catch (MemberNotFoundException e) {
+            System.out.println("Fejl: " + e.getMessage());
+            return;
         }
     }
 
     //Finder medlemmet ud fra det indtastet medlemsID
     public static Member seachForMember(int memberID) {
         for (Member member : memberList) {
-            if(memberID == member.getMemberid()) {
+            if (memberID == member.getMemberid()) {
                 return member;
             }
         }
-        return null;
+        throw new MemberNotFoundException("Intet medlem fundet med ID " + memberID);
     }
 
 
@@ -217,16 +222,18 @@ public class MemberService {
             }
     }
 
-    public static void removeMember(){
-        System.out.print("indtast medlemsID på medlemmet du vil slette");
+    public static void removeMember() {
+        System.out.print("Indtast medlemsID på medlemmet du vil slette: ");
         Scanner scanner = new Scanner(System.in);
         int medlemsID = scanner.nextInt();
-        Member foundMember = seachForMember(medlemsID);
-        memberList.remove(foundMember);
-        fileHandlerMembers.writeToFile();
-        System.out.print("Medlemmet er nu slettet\n");
-
+        try {
+            Member foundMember = seachForMember(medlemsID);
+            memberList.remove(foundMember);
+            fileHandlerMembers.writeToFile();
+            System.out.println("Medlemmet er nu slettet");
+        } catch (MemberNotFoundException e) {
+            System.out.println("Fejl: " + e.getMessage());
+        }
     }
-
 
 }

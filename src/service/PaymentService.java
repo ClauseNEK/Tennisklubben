@@ -66,6 +66,11 @@ public class PaymentService {
         return status;
 
     }
+    /*public static void showMembersInArrears() {
+        System.out.println("Medlemmer i restance:");
+    }*/
+    public static void showPaymentsSortedByName() {
+    }
 
 
     //Tager en ArrayList<String> og printer den som en String
@@ -80,4 +85,10 @@ public class PaymentService {
 
     }
 
+    public static void showPaymentsSortedByAmount() {
+    }
+
+    public static double calculatePayment(Member member) {
+        return 0;
+    }
 }
