@@ -10,26 +10,9 @@ public class Senior extends Member {
         super(name, age, activeMembership, disciplin, gameCategory);
     }
 
-    public Senior(int memberid, String paymentStatus, LocalDate localDate) {
-        super(memberid, paymentStatus, localDate);
+    @Override
+    public String getMemberType(){
+        return "Seniorspiller ";
     }
-
-
-    /*public double sixtyPlusDiscount(){
-        return 1500*0.25;
-    }*/
-
-
-    /*@Override
-    public double getPayment() {
-        if (membership()) {
-            if (getAge() > 60) {
-                return 1500-sixtyPlusDiscount();
-            }
-            return 1500;
-        } else {
-            return 250;
-        }
-    }*/
 
 }

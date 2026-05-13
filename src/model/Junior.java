@@ -10,18 +10,10 @@ public class Junior extends Member {
         super(name, age, activeMembership, disciplin, gameCategory);
     }
 
-    public Junior(int memberid, String paymentStatus, LocalDate localDate) {
-        super(memberid, paymentStatus, localDate);
+
+    @Override
+    public String getMemberType(){
+        return "Juniorspiller ";
     }
-
-
-    /*@Override
-    public double getPayment() {
-        if (membership()) {
-            return 800;
-        } else {
-            return 250;
-        }
-    }*/
 
 }

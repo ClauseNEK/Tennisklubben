@@ -65,7 +65,7 @@ public class FileHandlerMembers {
 
     }
 
-
+    //Tilføjer et medlem til ArrayListen og skriver den til CVS filen
     public void addMemberToFile(Member member) {
         memberList.add(member);
         writeToFile();

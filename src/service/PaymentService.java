@@ -4,6 +4,7 @@ import file.FileHandlerPayment;
 import model.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static file.FileHandlerMembers.memberList;
@@ -16,7 +17,7 @@ public class PaymentService {
     public static void addPaymentToMember(){
 
         for(Member member : memberList) {
-            System.out.print(member.getName() + "\n");
+            System.out.print(member.getMemberType() + member.getName() + "\n");
             String paymentStatus = choosePaymentStatus(scanner);
             //int memberid = member.getMemberid();
             double payment;
@@ -63,6 +64,19 @@ public class PaymentService {
         }
         //}
         return status;
+
+    }
+
+
+    //Tager en ArrayList<String> og printer den som en String
+    public static void showPayment(ArrayList<String> paymentList) {
+        if(paymentList.isEmpty()) {
+            System.out.println("Listen er tom");
+        } else {
+            for (String data : paymentList) {
+                System.out.println(data);
+            }
+        }
 
     }
 

@@ -20,6 +20,7 @@ public abstract class Member implements Membership  {
     //Bruges til kassereren
     private String paymentStatus;
     private LocalDate localDate;
+    private double payment;
 
     //Validator
     private AgeValidator validator;
@@ -33,13 +34,6 @@ public abstract class Member implements Membership  {
         this.activeMembership = activeMembership;
         this.gameCategory = gameCategory;
         this.disciplin = disciplin;
-    }
-
-    public Member(int memberid, String paymentStatus, LocalDate localDate) {
-        //memberIDCounter++;
-        this.memberid = memberIDCounter;
-        this.paymentStatus = paymentStatus;
-        this.localDate = localDate;
     }
 
 
@@ -79,8 +73,8 @@ public abstract class Member implements Membership  {
         return localDate;
     }
 
-    // Udregner kontigentbeløbet:
-    //public abstract double getPayment();
+    //Printer medlemstypen (junior/senior)
+    public abstract String getMemberType();
 
 
     // Setters
