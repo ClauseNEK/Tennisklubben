@@ -35,5 +35,4 @@ public class Payment implements Comparable<Payment>{
     public int compareTo(Payment other) {
         return Double.compare(this.payment, other.payment);
     }
-
 }
