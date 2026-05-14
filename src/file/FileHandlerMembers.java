@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class FileHandlerMembers {
 
     final static String members = "src/csv/Members";
-    public static ArrayList<Member> memberList = new ArrayList<Member>(); //Dette kunne blive gemt i en Database package for at holde tingene adskilte.
+    public static ArrayList<Member> memberList = new ArrayList<>();
 
 
     //Skriver arraylisten til csv filen "members"
@@ -52,7 +52,7 @@ public class FileHandlerMembers {
                                 "Ugyldig alder (" + age + ") på linje " + linenumber);
                     }
 
-                    boolean activeMembership = Boolean.parseBoolean(parts[2]);
+                    boolean activeMembership = parts[2].equalsIgnoreCase("aktiv");
                     Disciplin disciplin = Disciplin.valueOf(parts[4]);
                     GameCategory gameCategory = GameCategory.valueOf(parts[5]);
 

@@ -18,7 +18,8 @@ public class CoachUI {
             System.out.println("\n === Coach ===");
             System.out.println("1. Top 5 (Disciplin)");
             System.out.println("2. Top 5 (Træningsresultat)");
-            System.out.println("3. Gå tilbage");
+            System.out.println("3. Hvis træningsresultat for alle konkurrencespiller");
+            System.out.println("4. Gå tilbage");
 
             int input = Integer.parseInt(scanner.nextLine());
 
@@ -30,6 +31,9 @@ public class CoachUI {
                     CoachService.showTop5ByTrainingResult();
                     break;
                 case 3:
+                    CoachService.printLists();
+                    break;
+                case 4:
                     running = false;
                     break;
                 default:

@@ -1,4 +1,5 @@
 package ui;
+
 import java.util.Scanner;
 
 public class SmashUI {
@@ -7,7 +8,13 @@ public class SmashUI {
         boolean running = true;
 
         while (running){
-            System.out.println("Vælg din rolle\n1. Formand\n2. Kasserer\n3. Coach\n4. Luk program");
+            System.out.println();
+            ConsoleStyle.printTitle("VÆLG DIN ROLLE");
+            ConsoleStyle.printMenuLine(ConsoleStyle.BLUE, 1, "Formand", "👔");
+            ConsoleStyle.printMenuLine(ConsoleStyle.YELLOW, 2, "Kasserer", "💰");
+            ConsoleStyle.printMenuLine(ConsoleStyle.GREEN, 3, "Coach", "🎾");
+            ConsoleStyle.printMenuLine(ConsoleStyle.RED, 4, "Luk program", "🚪");
+            System.out.print(ConsoleStyle.WHITE + "> " + ConsoleStyle.RESET);
             try{
                 int input = Integer.parseInt(scanner.nextLine());
 
@@ -26,7 +33,7 @@ public class SmashUI {
                         running = false;
                         break;
                     default:
-                        System.out.println("Fejl valg: Vælg et tal mellem 1-3");
+                        ConsoleStyle.printError("Fejl valg: Vælg et tal mellem 1-4");
                 }
             } catch (Exception e){
                 System.out.println("KALD EN EXCEPTION HER!");

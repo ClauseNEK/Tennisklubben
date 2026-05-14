@@ -2,10 +2,8 @@ package file;
 
 import exceptions.CsvFileException;
 import model.*;
-import service.PaymentService;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -13,20 +11,53 @@ public class FileHandlerPayment {
 
     final static String payments = "src/csv/payments";
     final static String restance = "src/csv/restance";
-    public static ArrayList<Member> memberPaymentList = new ArrayList<>();
+    //public static ArrayList<Member> memberPaymentList = new ArrayList<>();
 
-    public static ArrayList<String> restanceList = new ArrayList<>();
-    public static ArrayList<String> mergedList = new ArrayList<>();
+    public static ArrayList<Payment> restanceList = new ArrayList<>();
+    public static ArrayList<Payment> paymentList = new ArrayList<>();
+
+
+    public void readRestanceCSV() {
+        try(BufferedReader reader = new BufferedReader(new FileReader(restance))) {
+            String line;
+            int linenumber = 0;
+
+            while((line = reader.readLine()) != null) {
+                linenumber++;
+                String[] parts = line.split(",");
+
+                if (parts.length < 3) {
+                    throw new CsvFileException("Forkerte antal felter på linjer" + linenumber);
+                }
+
+                try {
+                    int memberID = Integer.parseInt(parts[0]);
+                    double paymentAmount = Double.parseDouble(parts[1]);
+                    String paymentStatus = parts[2];
+
+                    Payment payment = new Payment(memberID, paymentAmount, paymentStatus);
+
+                    restanceList.add(payment);
+
+                } catch (IllegalArgumentException e) {
+                    throw new CsvFileException(
+                            "Kunne ikke parse linje " + linenumber + ": " + e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            throw new CsvFileException("Kunne ikke læse medlemsfilen: " + e.getMessage());
+        }
+    }
 
 
     //Skriver arraylisten til csv filen "payments"
-    public void writeToPaymentFile() {
+    public static void writeToPaymentFile() {
         try {
             FileWriter fileWriter = new FileWriter(payments);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(String data : mergedList) {
-                bufferedWriter.write(data);
+            for(Payment p : paymentList) {
+                bufferedWriter.write(p.toString());
                 bufferedWriter.newLine();
             }
 
@@ -40,13 +71,13 @@ public class FileHandlerPayment {
 
 
     //Skriver arraylisten til csv filen "restance"
-    public void writeToRestanceFile() {
+    public static void writeToRestanceFile() {
         try {
             FileWriter fileWriter = new FileWriter(restance);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(String data : restanceList) {
-                bufferedWriter.write(data);
+            for(Payment p : restanceList) {
+                bufferedWriter.write(p.toString());
                 bufferedWriter.newLine();
             }
 
@@ -55,32 +86,6 @@ public class FileHandlerPayment {
         } catch (Exception e) {
             throw new CsvFileException("Kunne ikke skrive til payments filen" + e.getMessage());
         }
-    }
-
-
-    //Fejl: Betalingsprisen og paymentStatus driller (paymentStatus bliver passiv når man gøre programmet med eksisterende dataer)
-    public void addMemberToPaymentFile(Member member, double payment, String paymentStatus) {
-        mergedList.add(memberPaymentToString(member.getMemberid(), payment, paymentStatus));
-
-        if (paymentStatus.equalsIgnoreCase("Ikke betalt")) {
-            restanceList.add(memberPaymentToString(member.getMemberid(), payment, paymentStatus));
-        }
-
-        writeToPaymentFile();
-        writeToRestanceFile();
-    }
-
-    //Returnere dataerne som en String, så addMemberToPaymentFile() kan sætte dem samlet ind i en ArrayList<String>
-    public String memberPaymentToString(int memberID, double payment, String paymentStatus) {
-        return memberID + "," + payment + "," + paymentStatus + "\n";
-    }
-
-    public static void printPayments() {
-        PaymentService.showPayment(mergedList);
-    }
-
-    public static void printRestance() {
-        PaymentService.showPayment(restanceList);
     }
 
 }

@@ -6,11 +6,8 @@ import service.PaymentService;
 
 import java.util.Scanner;
 
-import static file.FileHandlerPayment.memberPaymentList;
 
 public class CashierUI {
-
-    private static FileHandlerPayment fileHandlerPayment = new FileHandlerPayment();
 
     public static void showCashier(){
         Scanner scanner = new Scanner(System.in);
@@ -19,9 +16,9 @@ public class CashierUI {
         while(running) {
             System.out.println("\n === Kasserer ===");
             System.out.println("1. Liste over indbetalinger");
-            System.out.println("2. Oversigt over medlemmer i restance"); //comparable sortering?
+            System.out.println("2. Oversigt over medlemmer i restance");
             System.out.println("3. Sorter efter navn");
-            System.out.println("4. Sorter efter beløb");
+            System.out.println("4. Sorter restance liste efter beløb"); //comparable sortering
             System.out.println("5. Gå tilbage");
 
             try {
@@ -30,16 +27,17 @@ public class CashierUI {
                 switch (input) {
                     case 1:
                         PaymentService.addPaymentToMember();
-                        FileHandlerPayment.printPayments();
+                        PaymentService.printPayments();
                         break;
                     case 2:
-                        FileHandlerPayment.printRestance();
+                        PaymentService.printRestance();
                         break;
                     case 3:
                         PaymentService.showPaymentsSortedByName();
                         break;
                     case 4:
-                        PaymentService.showPaymentsSortedByAmount();
+                        //PaymentService.showPaymentsSortedByAmount();
+                        System.out.println(PaymentService.sortByAmountAndConvertToString());
                         break;
                     case 5:
                         running = false;

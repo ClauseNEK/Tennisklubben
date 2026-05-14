@@ -29,6 +29,7 @@ public class ChairmanUI {
                         MemberService.addMember();
                         break;
                     case 2:
+                        MemberService.showList(memberList);
                         MemberService.editMemberData(scanner);
                         break;
                     case 3:

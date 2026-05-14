@@ -1,10 +1,8 @@
 package model;
 
 import exceptions.InvalidAgeException;
-import service.PaymentService;
 import validation.AgeValidator;
 
-import java.time.LocalDate;
 
 //Abstract klasse
 public abstract class Member implements Membership  {
@@ -17,15 +15,19 @@ public abstract class Member implements Membership  {
     private Disciplin disciplin;
     private GameCategory gameCategory;
 
-    //Bruges til kassereren
-    private String paymentStatus;
-    private LocalDate localDate;
-    private double payment;
+    private Payment payment;
 
     //Validator
     private AgeValidator validator;
 
-
+    /**
+     * Members konstruktør.
+     * @param name Medlemmets navn (String).
+     * @param age Medlemmets alder (int).
+     * @param activeMembership Medlemmets medlemskab (boolean).
+     * @param disciplin Medlemmets disciplin (Enum).
+     * @param gameCategory Medlemmets aktivitetsform (Enum).
+     */
     public Member(String name, int age, boolean activeMembership, Disciplin disciplin, GameCategory gameCategory){
         memberIDCounter++;
         this.memberid = memberIDCounter;
@@ -36,75 +38,116 @@ public abstract class Member implements Membership  {
         this.disciplin = disciplin;
     }
 
-
-    //Overrider interface metode, samt er en getters for boolean "activeMembership"
+    /**
+     * Overrider interface metoden, samt er en getters for boolean "activeMembership" i Members konstruktør.
+     * @return En boolean, som bruges i convertMembership() til at definere om medlemskabet er aktiv eller passiv.
+     */
     @Override
     public boolean membership() {
         return activeMembership;
     }
 
-
-    // Getters
+    /**
+     * Getter for medlemmets navn.
+     * @return "name" som en String.
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Getter for medlemmets alder.
+     * @return "age" som en int.
+     */
     public int getAge(){
         return age;
     }
 
+    /**
+     * Getter for medlemmets ID.
+     * @return "memberid" som en int.
+     */
     public int getMemberid(){
         return memberid;
     }
 
+    /**
+     * Getter for medlemmets disciplin (single/double/mixed_double).
+     * @return "disciplin" som enum Disciplin.
+     */
     public Disciplin getDisciplin() {
         return disciplin;
     }
 
+    /**
+     * Getter for medlemmets aktivitetsform, motionist (Exercise_player) eller konkurrence (Competition_player).
+     * @return "gameCategory" som enum GameCategory.
+     */
     public GameCategory getGameCategory() {
         return gameCategory;
     }
 
-    public String getPaymentstatus() {
-        return paymentStatus;
-    }
-
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
-    //Printer medlemstypen (junior/senior)
+    /**
+     * Abstrakt metode, der fortæller om medlemmet er Juniorspiller eller Seniorspiller.
+     * @return String
+     */
     public abstract String getMemberType();
 
-
-    // Setters
+    /**
+     * Setter for medlemmets navn.
+     * @param name Medlemmets nye navn.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Setter for medlemmets alder.
+     * @param age Medlemmets nye alder (int).
+     * @throws InvalidAgeException Hvis "age" er ude for aldersgrænsen kaldes denne exception.
+     */
     public void setAge(int age) throws InvalidAgeException {
         validator.validate(age);
         this.age = age;
     }
 
+    /**
+     * Setter for medlemmets medlemskab.
+     * @param membership En boolean, der definere om medlemskabet er aktivt(true) eller passivt(false).
+     */
     public void setMembership(boolean membership) {
         this.activeMembership = membership;
     }
 
+    /**
+     * Setter for medlemmets disciplin.
+     * @param disciplin Enum Disciplin
+     */
     public void setDisciplin(Disciplin disciplin) {
         this.disciplin = disciplin;
     }
 
+    /**
+     * Setter for medlemmets aktivitetsform.
+     * @param gameCategory Enum GameCategory.
+     */
     public void setGameCategory(GameCategory gameCategory) {
         this.gameCategory = gameCategory;
     }
 
+
+    /**
+     * Setter for medlemmets AgeValidator.
+     * @param validator AgeValidator.
+     */
     public void setValidator(AgeValidator validator) {
         this.validator = validator;
     }
 
-
-    // TooString metode
+    /**
+     * TooString metode
+     * @return String med medlemmets stamoplysninger.
+     */
     @Override
     public String toString(){
         return "Navn: " + name
@@ -115,6 +158,10 @@ public abstract class Member implements Membership  {
                 + "\nAktivitetsform: " + gameCategory + "\n";
     }
 
+    /**
+     * Convertere booleanen fra membership() til en String
+     * @return Hvis true returneres "aktiv" eller returneres "passiv".
+     */
     public String convertMembership(){
         if (membership()){
             return "aktiv";
@@ -123,6 +170,10 @@ public abstract class Member implements Membership  {
         }
     }
 
+    /**
+     * Metode til hvordan medlemmets oplysninger skal skrives til Members.csv
+     * @return Alle oplysningerne som en String.
+     */
     public String toMemberCSV() {
         return name + "," +
                 age + "," +
@@ -130,12 +181,6 @@ public abstract class Member implements Membership  {
                 memberid + "," +
                 disciplin + "," +
                 gameCategory;
-    }
-
-    public String toPaymentCSV() {
-        return memberid + "," +
-                paymentStatus + "," +
-                localDate;
     }
 
 }
