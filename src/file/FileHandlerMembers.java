@@ -1,11 +1,14 @@
 package file;
 
 import exceptions.CsvFileException;
+import exceptions.FileNotFoundException;
 import exceptions.InvalidAgeException;
 import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.File;
 
 public class FileHandlerMembers {
 
@@ -13,7 +16,7 @@ public class FileHandlerMembers {
     public static ArrayList<Member> memberList = new ArrayList<>();
 
 
-    //Skriver arraylisten til csv filen "members"
+        //Skriver arraylisten til csv filen "members"
     // Tilføjet: Exception
     // Rettet: BufferedWriter oppe i paramteren)
 
