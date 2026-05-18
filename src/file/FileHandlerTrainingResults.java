@@ -17,18 +17,6 @@ public class FileHandlerTrainingResults {
 
     public static ArrayList<CompetitionPlayer> trainingResultList = new ArrayList<>();
 
-    public static ArrayList<CompetitionPlayer> juniorSingleList = new ArrayList<>();
-    public static ArrayList<CompetitionPlayer> juniorDoubleList = new ArrayList<>();
-    public static ArrayList<CompetitionPlayer> juniorMixedDoubleList = new ArrayList<>();
-
-    public static ArrayList<CompetitionPlayer> seniorSingleList = new ArrayList<>();
-    public static ArrayList<CompetitionPlayer> seniorDoubleList = new ArrayList<>();
-    public static ArrayList<CompetitionPlayer> seniorMixedDoubleList = new ArrayList<>();
-
-    public static ArrayList<CompetitionPlayer> allJunior = new ArrayList<>();
-    public static ArrayList<CompetitionPlayer> allSenior = new ArrayList<>();
-
-
     /**
      * Læser csv-filen "training_results" og gemmer den eksisterende data i diverse ArrayLister af konkurrencespiller,
      * som skal bruges i klassen "CoachService".
@@ -52,37 +40,6 @@ public class FileHandlerTrainingResults {
                     Disciplin disciplin = Disciplin.valueOf(parts[2]);
                     int trainingResult = Integer.parseInt(parts[3]);
                     String date = parts[4];
-
-
-                    if (memberType.equalsIgnoreCase("Juniorspiller")) {
-                        if(disciplin.equals(Disciplin.SINGLE)) {
-                            CompetitionPlayer juniorSingle = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            juniorSingleList.add(juniorSingle);
-                            allJunior.add(juniorSingle);
-                        } else if (disciplin.equals(Disciplin.DOUBLE)) {
-                            CompetitionPlayer juniorDouble = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            juniorDoubleList.add(juniorDouble);
-                            allJunior.add(juniorDouble);
-                        } else {
-                            CompetitionPlayer juniorMixedDouble = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            juniorMixedDoubleList.add(juniorMixedDouble);
-                            allJunior.add(juniorMixedDouble);
-                        }
-                    } else {
-                        if(disciplin.equals(Disciplin.SINGLE)) {
-                            CompetitionPlayer seniorSingle = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            seniorSingleList.add(seniorSingle);
-                            allSenior.add(seniorSingle);
-                        } else if (disciplin.equals(Disciplin.DOUBLE)) {
-                            CompetitionPlayer seniorDouble = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            seniorDoubleList.add(seniorDouble);
-                            allSenior.add(seniorDouble);
-                        } else {
-                            CompetitionPlayer seniorMixedDouble = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
-                            seniorMixedDoubleList.add(seniorMixedDouble);
-                            allSenior.add(seniorMixedDouble);
-                        }
-                    }
 
                     CompetitionPlayer competitionPlayer = new CompetitionPlayer(memberID, memberType, disciplin, trainingResult, date);
 
@@ -111,18 +68,7 @@ public class FileHandlerTrainingResults {
                 bufferedWriter.write(competitionPlayer.toString());
                 bufferedWriter.newLine();
             }
-/* Når en konkurrencespiller bliver redigeret bliver den ikke vist i top 5 listerne, da den her kun
-bliver skrevet til "trainingResultList" listen og ikke "allJunior" og "allSenior" (de bliver ikke opdateret kun "trainingResultList")
-            for(CompetitionPlayer competitionPlayer : allJunior) {
-                bufferedWriter.write(competitionPlayer.toString());
-                bufferedWriter.newLine();
-            }
 
-            for(CompetitionPlayer competitionPlayer : allSenior) {
-                bufferedWriter.write(competitionPlayer.toString());
-                bufferedWriter.newLine();
-            }
-*/
             bufferedWriter.close();
 
         } catch (Exception e) {

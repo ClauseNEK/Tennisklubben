@@ -19,12 +19,67 @@ public class CoachService {
     private static FileHandlerTrainingResults handlerTrainingResults = new FileHandlerTrainingResults();
     private static Logger logger = new ConsoleLogger();
 
+    public static ArrayList<CompetitionPlayer> juniorSingleList = new ArrayList<>();
+    public static ArrayList<CompetitionPlayer> juniorDoubleList = new ArrayList<>();
+    public static ArrayList<CompetitionPlayer> juniorMixedDoubleList = new ArrayList<>();
+
+    public static ArrayList<CompetitionPlayer> seniorSingleList = new ArrayList<>();
+    public static ArrayList<CompetitionPlayer> seniorDoubleList = new ArrayList<>();
+    public static ArrayList<CompetitionPlayer> seniorMixedDoubleList = new ArrayList<>();
+
+    public static ArrayList<CompetitionPlayer> allJunior = new ArrayList<>();
+    public static ArrayList<CompetitionPlayer> allSenior = new ArrayList<>();
+
+
+    /**
+     * Går igennem listen af træningsresultater for alle konkurrencespillerne og finder alle juniorspillerne
+     * og føjer dem til en liste, samt en liste for hver deres disciplin.
+     */
+    public static void getJuniorList() {
+        for (CompetitionPlayer competitionPlayer : trainingResultList) {
+            if (competitionPlayer.getMemberType().equalsIgnoreCase("Juniorspiller")) {
+                if (competitionPlayer.getDisciplin().equals(Disciplin.SINGLE)) {
+                    juniorSingleList.add(competitionPlayer);
+                    allJunior.add(competitionPlayer);
+                } else if (competitionPlayer.getDisciplin().equals(Disciplin.DOUBLE)) {
+                    juniorDoubleList.add(competitionPlayer);
+                    allJunior.add(competitionPlayer);
+                } else {
+                    juniorMixedDoubleList.add(competitionPlayer);
+                    allJunior.add(competitionPlayer);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * Går igennem listen af træningsresultater for alle konkurrencespillerne og finder alle seniorspillerne
+     * og føjer dem til en liste, samt en liste for hver deres disciplin.
+     */
+    public static void getSeniorList() {
+        for (CompetitionPlayer competitionplayer : trainingResultList) {
+            if (competitionplayer.getMemberType().equalsIgnoreCase("Seniorspiller")) {
+                if(competitionplayer.getDisciplin().equals(Disciplin.SINGLE)) {
+                    seniorSingleList.add(competitionplayer);
+                    allSenior.add(competitionplayer);
+                } else if (competitionplayer.getDisciplin().equals(Disciplin.DOUBLE)) {
+                    seniorDoubleList.add(competitionplayer);
+                    allSenior.add(competitionplayer);
+                } else {
+                    seniorMixedDoubleList.add(competitionplayer);
+                    allSenior.add(competitionplayer);
+                }
+            }
+        }
+    }
+
+
 
     /**
      * Tager en liste af konkurrencespiller, sorter dem efter deres træningsresultat og printer de fem bedste.
      * @param playerList En ArrayList af konkurrencespiller, som enten er junior eller senior.
      */
-    //Sorter ikke redigeret medlemmer? Skal ændres i klassen "FileHandlerTrainingResults" writeToTrainingResultsFile().
     public static void sortListByResults(ArrayList<CompetitionPlayer> playerList) {
         if(playerList.isEmpty()) {
             System.out.println("Listen er tom.");
@@ -45,18 +100,33 @@ public class CoachService {
      * Kalder sortListByResults() og printer de fem bedste resultater fra junior og senior.
      */
     public static void printSortedLists() {
+        allJunior.removeAll(allJunior);
+        allSenior.removeAll(allSenior);
+
+        getJuniorList();
+        getSeniorList();
+
         System.out.println("Top 5 bedste træningsresultat for Juniorspillere:");
         sortListByResults(allJunior);
         System.out.println("\nTop 5 bedste træningsresultat for Seniorspillere:");
         sortListByResults(allSenior);
-
-        //handlerTrainingResults.writeToTrainingResultsFile();
     }
 
     /**
      * Kalder sortListByResults() og printer de fem bedste resultater fra junior og senior for hver disciplin.
      */
     public static void printTopFiveDisciplin() {
+        juniorSingleList.removeAll(juniorSingleList);
+        juniorDoubleList.removeAll(juniorDoubleList);
+        juniorMixedDoubleList.removeAll(juniorMixedDoubleList);
+
+        seniorSingleList.removeAll(seniorSingleList);
+        seniorDoubleList.removeAll(seniorDoubleList);
+        seniorMixedDoubleList.removeAll(seniorMixedDoubleList);
+
+        getJuniorList();
+        getSeniorList();
+
         System.out.println("Top 5 Juniorspillere i disciplinen SINGLE:");
         sortListByResults(juniorSingleList);
         System.out.println("\nTop 5 Juniorspillere i disciplinen DOUBLE:");
@@ -70,8 +140,6 @@ public class CoachService {
         sortListByResults(seniorDoubleList);
         System.out.println("\nTop 5 Seniorspillere i disciplinen MIXED DOUBLE:");
         sortListByResults(seniorMixedDoubleList);
-
-        //handlerTrainingResults.writeToTrainingResultsFile();
     }
 
 
