@@ -9,7 +9,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.io.File;
-
+/**
+ * Håndterer læsning og skrivning af medlemmer til CSV-filen Members.
+ * Klassen gemmer medlemmer i en fælles liste, som kan bruges af resten af programmet.
+ */
 public class FileHandlerMembers {
 
     final static String members = "src/csv/Members";
@@ -20,6 +23,11 @@ public class FileHandlerMembers {
     // Tilføjet: Exception
     // Rettet: BufferedWriter oppe i paramteren)
 
+    /**
+     * Skriver alle medlemmer fra memberList til CSV-filen Members.
+     * Hvert medlem konverteres til CSV-format med metoden toMemberCSV().
+     * @throws CsvFileException hvis der opstår en fejl under skrivning til filen
+     */
     public void writeToFile() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(members))) {
             for (Member member : memberList) {
@@ -31,7 +39,11 @@ public class FileHandlerMembers {
         }
     }
 
-    //Læser CSV filen "members"
+    /**
+     * Læser medlemmer fra CSV-filen Members og tilføjer dem til memberList.
+     * Metoden opretter Junior- eller Senior-objekter ud fra medlemmets alder.
+     * @throws CsvFileException hvis filen ikke kan læses, eller hvis en linje har ugyldige data
+     */
     public void readCSV() {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(members))) {

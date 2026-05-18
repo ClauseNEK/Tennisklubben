@@ -5,8 +5,10 @@ import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
-
-
+/**
+ * Håndterer læsning og skrivning af betalinger og restancer til CSV-filer.
+ * Klassen bruger paymentList til betalinger og restanceList til medlemmer i restance.
+ */
 public class FileHandlerPayment {
 
     final static String payments = "src/csv/payments";
@@ -15,7 +17,11 @@ public class FileHandlerPayment {
     public static ArrayList<Payment> restanceList = new ArrayList<>();
     public static ArrayList<Payment> paymentList = new ArrayList<>();
 
-
+    /**
+     * Læser betalinger fra CSV-filen payments og tilføjer dem til paymentList.
+     *
+     * @throws CsvFileException hvis filen ikke kan læses, eller hvis en linje har ugyldige data
+     */
     public void readPaymentsCSV() {
         try(BufferedReader reader = new BufferedReader(new FileReader(payments))) {
             String line;
@@ -84,6 +90,12 @@ public class FileHandlerPayment {
 
 
     //Skriver arraylisten til csv filen "payments"
+
+    /**
+     * Skriver alle betalinger fra paymentList til CSV-filen payments.
+     * @throws CsvFileException hvis der opstår en fejl under skrivning til filen
+     */
+
     public static void writeToPaymentFile() {
         try {
             FileWriter fileWriter = new FileWriter(payments);

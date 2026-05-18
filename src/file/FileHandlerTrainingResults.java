@@ -7,7 +7,10 @@ import model.Disciplin;
 import java.io.*;
 import java.util.ArrayList;
 
-
+/**
+ * Håndterer læsning og skrivning af træningsresultater til CSV-filen training_results.
+ * Klassen opdeler konkurrencespillere i lister efter medlemstype og disciplin.
+ */
 public class FileHandlerTrainingResults {
 
     final static String training_results = "src/csv/training_results";

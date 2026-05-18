@@ -9,6 +9,10 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Håndterer læsning og skrivning af turneringer til CSV-filen Tournaments.
+ * Klassen gemmer turneringer i tournamentList, så de kan bruges i programmet.
+ */
 public class FileHandlerTournaments {
 
     final static String tournaments = "src/csv/Tournaments";
@@ -27,6 +31,11 @@ public class FileHandlerTournaments {
     }
 
     // Læser CSV filen "Tournaments"
+    /**
+     * Læser turneringer fra CSV-filen Tournaments og tilføjer dem til tournamentList.
+     * Metoden læser også deltager-ID'er, hvis de findes på linjen.
+     * @throws CsvFileException hvis filen ikke kan læses, eller hvis en linje har ugyldige data
+     */
     public void readCSV() {
         try (BufferedReader reader = new BufferedReader(new FileReader(tournaments))) {
             String line;
@@ -72,6 +81,10 @@ public class FileHandlerTournaments {
         }
     }
 
+    /**
+     * Tilføjer en turnering til tournamentList og gemmer derefter listen i CSV-filen.
+     * @param tournament turneringen der skal tilføjes og gemmes
+     */
     public void addTournamentToFile(Tournament tournament) {
         tournamentList.add(tournament);
         writeToFile();
