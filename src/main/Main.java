@@ -2,6 +2,7 @@ package main;
 
 import file.FileHandlerMembers;
 import file.FileHandlerPayment;
+import file.FileHandlerTournaments;
 import file.FileHandlerTrainingResults;
 import ui.SmashUI;
 
@@ -17,6 +18,11 @@ public class Main {
 
         FileHandlerTrainingResults handlerTrainingResults = new FileHandlerTrainingResults();
         handlerTrainingResults.readTrainingResultsCSV();
+
+        FileHandlerTournaments handlerTournaments = new FileHandlerTournaments();
+        handlerTournaments.readCSV();
+        //handlerTournaments.writeToFile();
+
 
         SmashUI smashui = new SmashUI();
         smashui.start();
