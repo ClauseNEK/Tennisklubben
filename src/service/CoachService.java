@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import static file.FileHandlerMembers.memberList;
 import static file.FileHandlerTrainingResults.trainingResultList;
-import static file.FileHandlerTrainingResults.*;
 
 public class CoachService {
     private static Scanner scanner = new Scanner(System.in);
@@ -75,7 +74,6 @@ public class CoachService {
     }
 
 
-
     /**
      * Tager en liste af konkurrencespiller, sorter dem efter deres træningsresultat og printer de fem bedste.
      * @param playerList En ArrayList af konkurrencespiller, som enten er junior eller senior.
@@ -85,14 +83,9 @@ public class CoachService {
             System.out.println("Listen er tom.");
         } else {
             Collections.sort(playerList, Collections.reverseOrder());
-            try {
-                for(int i = 0; i < 5; i++) {
-                    System.out.println(playerList.get(i));
-                }
-            } catch (IndexOutOfBoundsException e) {
-                //Exception kaldes
+            for(int i = 0; i < 5 && i < playerList.size(); i++) {
+                System.out.println(playerList.get(i));
             }
-
         }
     }
 
