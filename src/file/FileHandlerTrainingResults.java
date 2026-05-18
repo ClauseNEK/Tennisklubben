@@ -108,7 +108,18 @@ public class FileHandlerTrainingResults {
                 bufferedWriter.write(competitionPlayer.toString());
                 bufferedWriter.newLine();
             }
+/* Når en konkurrencespiller bliver redigeret bliver den ikke vist i top 5 listerne, da den her kun
+bliver skrevet til "trainingResultList" listen og ikke "allJunior" og "allSenior" (de bliver ikke opdateret kun "trainingResultList")
+            for(CompetitionPlayer competitionPlayer : allJunior) {
+                bufferedWriter.write(competitionPlayer.toString());
+                bufferedWriter.newLine();
+            }
 
+            for(CompetitionPlayer competitionPlayer : allSenior) {
+                bufferedWriter.write(competitionPlayer.toString());
+                bufferedWriter.newLine();
+            }
+*/
             bufferedWriter.close();
 
         } catch (Exception e) {

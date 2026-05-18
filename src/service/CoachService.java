@@ -24,7 +24,7 @@ public class CoachService {
      * Tager en liste af konkurrencespiller, sorter dem efter deres træningsresultat og printer de fem bedste.
      * @param playerList En ArrayList af konkurrencespiller, som enten er junior eller senior.
      */
-    //Sorter ikke redigeret medlemmer?
+    //Sorter ikke redigeret medlemmer? Skal ændres i klassen "FileHandlerTrainingResults" writeToTrainingResultsFile().
     public static void sortListByResults(ArrayList<CompetitionPlayer> playerList) {
         if(playerList.isEmpty()) {
             System.out.println("Listen er tom.");
@@ -49,6 +49,8 @@ public class CoachService {
         sortListByResults(allJunior);
         System.out.println("\nTop 5 bedste træningsresultat for Seniorspillere:");
         sortListByResults(allSenior);
+
+        //handlerTrainingResults.writeToTrainingResultsFile();
     }
 
     /**
@@ -68,6 +70,8 @@ public class CoachService {
         sortListByResults(seniorDoubleList);
         System.out.println("\nTop 5 Seniorspillere i disciplinen MIXED DOUBLE:");
         sortListByResults(seniorMixedDoubleList);
+
+        //handlerTrainingResults.writeToTrainingResultsFile();
     }
 
 

@@ -25,8 +25,9 @@ public class MemberService {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
 
-        System.out.print("Alder på medlemmet: ");
-        int age = scanner.nextInt(); //Kald InvalidAgeException
+        int age = chooseAge(scanner);
+
+        scanner.nextLine();
 
         boolean membership = chooseMembership(scanner);
 
@@ -41,6 +42,33 @@ public class MemberService {
 
         logger.confirmed("\033[3mMedlem gemt\033[0m");
     }
+
+
+    /**
+     * Beder om alderen på medlemmet og gemmer oplysningen. Kalder en exception hvis inputtet er udenfor aldersgrænsen.
+     * @param scanner Bruger Scanner til at få og gemme den ønskede alder.
+     * @return Alderen som en int
+     */
+    public static int chooseAge(Scanner scanner) {
+        int age;
+        while (true) {
+            try {
+                System.out.print("Alder på medlemmet: ");
+                if(scanner.hasNext()) {
+                    age = scanner.nextInt();
+                    if (age < 0 || age > 120) {
+                        throw new InvalidAgeException("Ugyldig alder! Et medlem skal være mellem 0 og 120år");
+                    } else {
+                        return age;
+                    }
+                }
+            } catch (InvalidAgeException e) {
+                System.out.println("Fejl: Ugyldig alder. Et medlem skal være mellem 0 og 120år");
+            }
+        }
+    }
+
+
 
     /**
      * Vælger om medlemskabet skal være aktivt eller passivt

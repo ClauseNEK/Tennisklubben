@@ -6,8 +6,8 @@ public class MemberAgeValidator implements AgeValidator {
 
     @Override
     public void validate(int age) throws InvalidAgeException {
-        if(age < 8 || age > 88) {
-            throw new InvalidAgeException("Der accepteres kun medlemmer mellem 8 og 88 år.");
+        if(age < 0 || age > 120) {
+            throw new InvalidAgeException("Der accepteres kun medlemmer mellem 0 og 120 år.");
         }
     }
 
