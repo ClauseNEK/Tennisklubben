@@ -31,7 +31,7 @@ TennisklubbemSmash
 │   ├── MemberComparator.java
 │   ├── PaymentComparator.java
 │   ├── InputValidator.java
-│   └── Logger.java
+│   └── logger.java
 │
 ├── interfaces
 │   ├── Payable.java

@@ -39,6 +39,7 @@ public class ChairmanUI {
                     case 4:
                         MemberAgeComparator.sortByAge(memberList);
                         MemberService.showList(memberList);
+                        MemberService.checkAges();
                         break;
                     case 5:
                         MemberService.removeMember();
@@ -51,6 +52,7 @@ public class ChairmanUI {
                         System.out.println("Fejl valg: Vælg et tal mellem 1-6");
                 }
             } catch (Exception e){
+                e.printStackTrace();
                 System.out.println("KALD EN EXCEPTION HER!!!");
             }
         }

@@ -1,8 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-
-//
 public class Junior extends Member {
 
     //kontruktør
@@ -13,7 +10,7 @@ public class Junior extends Member {
 
     @Override
     public String getMemberType(){
-        return "Juniorspiller ";
+        return "Juniorspiller";
     }
 
 }

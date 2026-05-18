@@ -1,51 +1,75 @@
 package service;
 
+import exceptions.MemberNotFoundException;
 import file.FileHandlerTrainingResults;
+import logger.ConsoleLogger;
+import logger.Logger;
 import model.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import static file.FileHandlerMembers.memberList;
+import static file.FileHandlerTrainingResults.trainingResultList;
+import static file.FileHandlerTrainingResults.*;
 
 public class CoachService {
     private static Scanner scanner = new Scanner(System.in);
     private static FileHandlerTrainingResults handlerTrainingResults = new FileHandlerTrainingResults();
-
-    private static ArrayList<String> competitionList = new ArrayList<>();
-
-    private static ArrayList<String> juniorSingleList = new ArrayList<>();
-    private static ArrayList<String> juniorDoubleList = new ArrayList<>();
-    private static ArrayList<String> juniorMixedDoubleList = new ArrayList<>();
-
-    private static ArrayList<String> seniorSingleList = new ArrayList<>();
-    private static ArrayList<String> seniorDoubleList = new ArrayList<>();
-    private static ArrayList<String> seniorMixedDoubleList = new ArrayList<>();
+    private static Logger logger = new ConsoleLogger();
 
 
-    public ArrayList<String> getJuniorSingleList() {
-        return juniorSingleList;
+    /**
+     * Tager en liste af konkurrencespiller, sorter dem efter deres træningsresultat og printer de fem bedste.
+     * @param playerList En ArrayList af konkurrencespiller, som enten er junior eller senior.
+     */
+    //Sorter ikke redigeret medlemmer?
+    public static void sortListByResults(ArrayList<CompetitionPlayer> playerList) {
+        if(playerList.isEmpty()) {
+            System.out.println("Listen er tom.");
+        } else {
+            Collections.sort(playerList, Collections.reverseOrder());
+            try {
+                for(int i = 0; i < 5; i++) {
+                    System.out.println(playerList.get(i));
+                }
+            } catch (IndexOutOfBoundsException e) {
+                //Exception kaldes
+            }
+
+        }
     }
 
-    public ArrayList<String> getJuniorDoubleList() {
-        return juniorDoubleList;
+    /**
+     * Kalder sortListByResults() og printer de fem bedste resultater fra junior og senior.
+     */
+    public static void printSortedLists() {
+        System.out.println("Top 5 bedste træningsresultat for Juniorspillere:");
+        sortListByResults(allJunior);
+        System.out.println("\nTop 5 bedste træningsresultat for Seniorspillere:");
+        sortListByResults(allSenior);
     }
 
-    public ArrayList<String> getJuniorMixedDoubleList() {
-        return juniorMixedDoubleList;
+    /**
+     * Kalder sortListByResults() og printer de fem bedste resultater fra junior og senior for hver disciplin.
+     */
+    public static void printTopFiveDisciplin() {
+        System.out.println("Top 5 Juniorspillere i disciplinen SINGLE:");
+        sortListByResults(juniorSingleList);
+        System.out.println("\nTop 5 Juniorspillere i disciplinen DOUBLE:");
+        sortListByResults(juniorDoubleList);
+        System.out.println("\nTop 5 Juniorspillere i disciplinen MIXED DOUBLE:");
+        sortListByResults(juniorMixedDoubleList);
+
+        System.out.println("\n\nTop 5 Seniorspillere i disciplinen SINGLE:");
+        sortListByResults(seniorSingleList);
+        System.out.println("\nTop 5 Seniorspillere i disciplinen DOUBLE:");
+        sortListByResults(seniorDoubleList);
+        System.out.println("\nTop 5 Seniorspillere i disciplinen MIXED DOUBLE:");
+        sortListByResults(seniorMixedDoubleList);
     }
 
-    public ArrayList<String> getSeniorSingleList() {
-        return seniorSingleList;
-    }
-
-    public ArrayList<String> getSeniorDoubleList() {
-        return seniorDoubleList;
-    }
-
-    public ArrayList<String> getSeniorMixedDoubleList() {
-        return seniorMixedDoubleList;
-    }
 
     public static void showTop5ByDiscipline() {
         System.out.println("Top 5 efter disciplin:");
@@ -71,8 +95,12 @@ public class CoachService {
     }
 
 
-    //Går igennem medlemslisten og finder alle de aktive konkurrencespillere
+    /**
+     * Går igennem medlemslisten, finder alle de aktive konkurrencespillere og kalder addCompetitionPlayerToCSV(),
+     * der skriver dem til training_results.csv.
+     */
     public static void getCompetitionPlayers() {
+        trainingResultList.removeAll(trainingResultList);
         for(Member member : memberList) {
             if (member.membership()) { //Tjekker om medlemmet er aktivt
                 if(member.getGameCategory().equals(GameCategory.COMPETITION_PLAYER)) {
@@ -84,38 +112,43 @@ public class CoachService {
 
                     scanner.nextLine();
 
-                    System.out.print("Indtast datoen for dette resultat (dd-mm-yyyy): ");
-                    String date = scanner.nextLine();
+                    String date = chooseDate(scanner);
 
-                    if (member.getAge() < 18) {
-                        if(member.getDisciplin().equals(Disciplin.SINGLE)) {
-                            juniorSingleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        } else if (member.getDisciplin().equals(Disciplin.DOUBLE)) {
-                            juniorDoubleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        } else {
-                            juniorMixedDoubleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        }
-                    } else {
-                        if(member.getDisciplin().equals(Disciplin.SINGLE)) {
-                            seniorSingleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        } else if (member.getDisciplin().equals(Disciplin.DOUBLE)) {
-                            seniorDoubleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        } else {
-                            seniorMixedDoubleList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-                        }
-                    }
-
-                    competitionList.add(memberResultToString(member.getMemberid(), disciplin, result, date));
-
-                    handlerTrainingResults.writeToTrainingResultsFile();
+                    CompetitionPlayer competitionPlayer = new CompetitionPlayer(member.getMemberid(), member.getMemberType(), disciplin, result, date);
+                    addCompetitionPlayerToCSV(competitionPlayer);
                 }
             }
         }
     }
 
-    //Returnere dataerne som en String, så addMemberToPaymentFile() kan sætte dem samlet ind i en ArrayList<String>
-    public static String memberResultToString(int memberID, Disciplin disciplin, int result, String date) {
-        return memberID + "," + disciplin + "," + result + "," + date + "\n";
+    /**
+     * Datoen for træningsresultatet indtastet og metoden tjekker at datoen er 10 char lang.
+     * @param scanner Scanner bruges til at gemme datoen
+     * @return Datoen som en String (dd-mm-yyyy)
+     */
+    public static String chooseDate(Scanner scanner) {
+        String date;
+        while (true) {
+            System.out.print("Indtast datoen for dette resultat (dd-mm-yyyy): ");
+            if(scanner.hasNext()) {
+                date = scanner.nextLine();
+                if(date.length() != 10) {
+                    System.out.println("Forkert indtastning. Prøv igen.");
+                } else {
+                    return date;
+                }
+            }
+        }
+    }
+
+    /**
+     * Får en konkurrencespiller og føjer dem til ArrayListen "trainingResultList", samt skriver dem til CSV filen
+     * @param competitionPlayer En konkurrencespiller
+     */
+    public static void addCompetitionPlayerToCSV(CompetitionPlayer competitionPlayer) {
+        trainingResultList.add(competitionPlayer);
+
+        handlerTrainingResults.writeToTrainingResultsFile();
     }
 
 
@@ -123,17 +156,67 @@ public class CoachService {
 
     }
 
-    public static void printLists() {
-        getCompetitionPlayers();
-        System.out.println("Alle konkurrencespillere:\n" + competitionList);
+    /**
+     * Giver brugeren lov til at indskrive et nyt træningsresultat på en konkurrencespiller, samt datoen på resultatet.
+     * Den nye data skrives til csv filen "trainingResultList".
+     * @param scanner Der bruges en Scanner til at gemme de nye værdier, samt at finde den ønskede konkurrencespiller,
+     *                ud fra det indtastet medlemsID.
+     */
+    public static void editCompetitionPlayer(Scanner scanner) {
+        printResults();
+        System.out.print("Indtast medlemsID på den konkurrencespiller du gerne vil ændre: ");
+        int findID = scanner.nextInt();
+        CompetitionPlayer player = findCompetitionPlayer(findID);
 
-        System.out.println("Bedste træningsresultat for Junior i disciplinen SINGLE:\n" + juniorSingleList + "\n");
-        System.out.println("Bedste træningsresultat for Junior i disciplinen DOUBLE:\n" + juniorDoubleList + "\n");
-        System.out.println("Bedste træningsresultat for Junior i disciplinen MIXED DOUBLE:\n" + juniorMixedDoubleList + "\n\n");
+        System.out.print("Indtast det nye bedste træningsresultat: ");
+        int result = scanner.nextInt();
+        player.setTrainingResult(result);
 
-        System.out.println("Bedste træningsresultat for Senior i disciplinen SINGLE:\n" + seniorSingleList + "\n");
-        System.out.println("Bedste træningsresultat for Senior i disciplinen DOUBLE:\n" + seniorDoubleList + "\n");
-        System.out.println("Bedste træningsresultat for Senior i disciplinen MIXED DOUBLE:\n" + seniorMixedDoubleList + "\n");
+        scanner.nextLine();
+
+        String date = chooseDate(scanner);
+        player.setDate(date);
+
+        logger.confirmed("\n\033[3mResultat og dato gemt\033[0m");
+
+        handlerTrainingResults.writeToTrainingResultsFile();
+    }
+
+    /**
+     * Går igennem listen af konkurrencespiller og finder den spiller der matcher det indtastet medlemsID.
+     * @param memberID MedlemsID'et (int), der bruges til at finde den ønskede spiller.
+     * @return Konkurrencespilleren der matcher det indtastet medlemsID.
+     */
+    public static CompetitionPlayer findCompetitionPlayer(int memberID) {
+        for (CompetitionPlayer competitionPlayer : trainingResultList) {
+            if (memberID == competitionPlayer.getMemberID()) {
+                return competitionPlayer;
+            }
+        }
+        throw new MemberNotFoundException("Intet medlem fundet med ID " + memberID);
+    }
+
+    /**
+     * Tjekker om listen er tom og hvis ikke, så printes hver konkurrencespiller i listen ud.
+     * @param trainingList En ArrayList af konkurrencespiller.
+     */
+    public static void showTrainingResults(ArrayList<CompetitionPlayer> trainingList) {
+        if(trainingList.isEmpty()) {
+            System.out.println("Listen er tom");
+        } else {
+            for (CompetitionPlayer competitionPlayer : trainingList) {
+                System.out.println(competitionPlayer);
+            }
+        }
 
     }
+
+    /**
+     * Kalder showTrainingResults() og printer ArrayListen "trainingResultList".
+     */
+    public static void printResults() {
+        showTrainingResults(trainingResultList);
+        handlerTrainingResults.writeToTrainingResultsFile();
+    }
+
 }

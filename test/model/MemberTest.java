@@ -89,7 +89,7 @@ public class MemberTest {
     @Test
     public void testMemberTypeJunior() {
         Member bobby = new Junior("Bobby", 17, true, SINGLE, COMPETITION_PLAYER);
-        assertEquals("Juniorspiller ", bobby.getMemberType());
+        assertEquals("Juniorspiller", bobby.getMemberType());
     }
 
     /**
@@ -98,7 +98,7 @@ public class MemberTest {
     @Test
     public void testMemberTypeSenior() {
         Member franky = new Senior("Franky", 72, false, DOUBLE, EXERCISE_PLAYER);
-        assertEquals("Seniorspiller ", franky.getMemberType());
+        assertEquals("Seniorspiller", franky.getMemberType());
     }
 
     /**

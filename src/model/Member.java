@@ -2,7 +2,7 @@ package model;
 
 import exceptions.InvalidAgeException;
 import validation.AgeValidator;
-
+import logger.*;
 
 //Abstract klasse
 public abstract class Member implements Membership  {
@@ -16,6 +16,7 @@ public abstract class Member implements Membership  {
     private GameCategory gameCategory;
 
     private Payment payment;
+    private Logger logger = new ConsoleLogger();
 
     //Validator
     private AgeValidator validator;
@@ -120,6 +121,20 @@ public abstract class Member implements Membership  {
     }
 
     /**
+     * Giver en advarsel, hvis en juniorspiller nærmere sig 18år.
+     */
+    public void juniorWarning() {
+        logger.warning("MedlemsID " + memberid + ": " + name + " er ved at nærme sig 18år. Husk at ændre stamoplysningerne så kontingentbetaling bliver opdateret.");
+    }
+
+    /**
+     * Giver en advarsel, hvis en seniorspiller er ved at blive over 60år.
+     */
+    public void seniorWarning() {
+        logger.warning("MedlemsID " + memberid + ": " + name + " er ved at blive over 60år. Husk at ændre stamoplysningerne så kontingentbetaling bliver opdateret.");
+    }
+
+    /**
      * Setter for medlemmets disciplin.
      * @param disciplin Enum Disciplin
      */
@@ -145,7 +160,7 @@ public abstract class Member implements Membership  {
     }
 
     /**
-     * TooString metode
+     * ToString metode
      * @return String med medlemmets stamoplysninger.
      */
     @Override
@@ -159,7 +174,7 @@ public abstract class Member implements Membership  {
     }
 
     /**
-     * Convertere booleanen fra membership() til en String
+     * Konvertere booleanen fra membership() til en String
      * @return Hvis true returneres "aktiv" eller returneres "passiv".
      */
     public String convertMembership(){

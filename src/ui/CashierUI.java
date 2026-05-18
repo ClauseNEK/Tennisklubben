@@ -1,13 +1,13 @@
 package ui;
 
-import file.FileHandlerPayment;
-import service.MemberService;
 import service.PaymentService;
-
 import java.util.Scanner;
 
-
 public class CashierUI {
+
+    /*Skal kasserne have mulighed for at redigere medlemmer i restance? Dette kan ske hvis man trykker 2 og
+    opdatere hele listen, men der kunne være en mulighed for at ændre et enkelt medlem (ligesom i CoachUI).
+    Det er dog ikke en del af opgave beskrivelsen.*/
 
     public static void showCashier(){
         Scanner scanner = new Scanner(System.in);
@@ -15,9 +15,9 @@ public class CashierUI {
 
         while(running) {
             System.out.println("\n === Kasserer ===");
-            System.out.println("1. Liste over indbetalinger");
-            System.out.println("2. Oversigt over medlemmer i restance");
-            System.out.println("3. Sorter efter navn");
+            System.out.println("1. Vis liste over indbetalinger");
+            System.out.println("2. Opdater liste over indbetalinger");
+            System.out.println("3. Oversigt over medlemmer i restance");
             System.out.println("4. Sorter restance liste efter beløb"); //comparable sortering
             System.out.println("5. Gå tilbage");
 
@@ -26,14 +26,15 @@ public class CashierUI {
 
                 switch (input) {
                     case 1:
+                        PaymentService.printPayments();
+                        //PaymentService.showPayment(paymentList);
+                        break;
+                    case 2:
                         PaymentService.addPaymentToMember();
                         PaymentService.printPayments();
                         break;
-                    case 2:
-                        PaymentService.printRestance();
-                        break;
                     case 3:
-                        PaymentService.showPaymentsSortedByName();
+                        PaymentService.printRestance();
                         break;
                     case 4:
                         //PaymentService.showPaymentsSortedByAmount();

@@ -1,20 +1,17 @@
-Bedste træningsresultat for Junior i disciplinen SINGLE:
-2,SINGLE,12,12-12-2001
-
-Bedste træningsresultat for Junior i disciplinen DOUBLE:
-3,DOUBLE,45,12-12-2001
-
-Bedste træningsresultat for Junior i disciplinen MIXED DOUBLE:
-4,MIXED_DOUBLE,1,12-12-2001
-
-Bedste træningsresultat for Senior i disciplinen SINGLE:
-5,SINGLE,21,12-12-2001
-
-Bedste træningsresultat for Senior i disciplinen DOUBLE:
-1,DOUBLE,34,12-12-2001
-
-6,DOUBLE,10,12-12-2001
-
-Bedste træningsresultat for Senior i disciplinen MIXED DOUBLE:
-7,MIXED_DOUBLE,8,12-12-2001
-
+1,Seniorspiller,DOUBLE,12,12-12-2001
+2,Juniorspiller,SINGLE,4,12-12-2001
+3,Juniorspiller,DOUBLE,6,12-12-2001
+4,Juniorspiller,MIXED_DOUBLE,2,12-12-2001
+5,Seniorspiller,SINGLE,5,12-12-2001
+6,Seniorspiller,DOUBLE,10,12-12-2001
+7,Seniorspiller,MIXED_DOUBLE,11,12-12-2001
+8,Juniorspiller,SINGLE,23,12-12-2001
+9,Juniorspiller,DOUBLE,12,12-12-2001
+10,Juniorspiller,MIXED_DOUBLE,2,12-12-2001
+11,Seniorspiller,SINGLE,23,12-12-2001
+12,Seniorspiller,DOUBLE,10,12-12-2001
+13,Seniorspiller,DOUBLE,4,12-12-2001
+17,Juniorspiller,MIXED_DOUBLE,12,12-12-2001
+18,Juniorspiller,SINGLE,5,12-12-2001
+19,Seniorspiller,DOUBLE,19,12-12-2001
+20,Seniorspiller,SINGLE,44,12-12-2001

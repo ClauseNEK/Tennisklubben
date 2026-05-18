@@ -17,7 +17,7 @@ public class PaymentService {
     public static void addPaymentToMember(){
 
         for(Member member : memberList) {
-            System.out.print(member.getMemberType() + member.getName() + "\n");
+            System.out.print(member.getMemberType() + " " + member.getName() + "\n");
             String paymentStatus = choosePaymentStatus(scanner);
             double payment;
 

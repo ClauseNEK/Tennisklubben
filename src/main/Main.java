@@ -2,6 +2,7 @@ package main;
 
 import file.FileHandlerMembers;
 import file.FileHandlerPayment;
+import file.FileHandlerTrainingResults;
 import ui.SmashUI;
 
 public class Main {
@@ -11,7 +12,11 @@ public class Main {
         handlerMembers.readCSV();
 
         FileHandlerPayment handlerPayment = new FileHandlerPayment();
+        handlerPayment.readPaymentsCSV();
         handlerPayment.readRestanceCSV();
+
+        FileHandlerTrainingResults handlerTrainingResults = new FileHandlerTrainingResults();
+        handlerTrainingResults.readTrainingResultsCSV();
 
         SmashUI smashui = new SmashUI();
         smashui.start();
