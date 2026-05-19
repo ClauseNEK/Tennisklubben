@@ -36,8 +36,7 @@ public class SmashUI {
                         ConsoleStyle.printError("Fejl valg: Vælg et tal mellem 1-4");
                 }
             } catch (Exception e){
-                e.printStackTrace();
-                System.out.println("KALD EN EXCEPTION HER!");
+                throw new RuntimeException(e);
             }
         }
     }

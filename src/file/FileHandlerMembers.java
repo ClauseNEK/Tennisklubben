@@ -78,8 +78,7 @@ public class FileHandlerMembers {
                     }
                 } catch (IllegalArgumentException e) {
                     // IllegalArgumentException dækker også Disciplin.valueOf/GameCategory med value.of
-                    throw new CsvFileException(
-                            "Kunne ikke parse linje " + linenumber + ": " + e.getMessage());
+                    throw new CsvFileException("Kunne ikke parse linje " + linenumber + ": " + e.getMessage());
                 }
             }
         } catch (IOException e) {

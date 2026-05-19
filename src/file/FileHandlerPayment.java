@@ -55,7 +55,6 @@ public class FileHandlerPayment {
     }
 
 
-
     public void readRestanceCSV() {
         try(BufferedReader reader = new BufferedReader(new FileReader(restance))) {
             String line;
