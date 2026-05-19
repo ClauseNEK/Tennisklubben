@@ -74,8 +74,6 @@ public class FileHandlerTournaments {
                             "Kunne ikke parse linje " + linenumber + ": " + e.getMessage());
                 }
             }
-        } catch (FileNotFoundException e) {
-            throw new exceptions.FileNotFoundException("Filen kunne læses til");
         } catch (IOException e) {
             throw new CsvFileException("Kunne ikke læse turneringsfilen: " + e.getMessage());
         }
