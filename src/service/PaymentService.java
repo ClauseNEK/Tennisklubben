@@ -82,21 +82,6 @@ public class PaymentService {
 
     }
 
-    /*public static void showMembersInArrears() {
-        System.out.println("Medlemmer i restance:");
-    }*/
-    public static void showPaymentsSortedByName() {
-        //Collections.sort(restanceList);
-        //FileHandlerPayment.printRestance();
-
-    }
-
-    public static void showPaymentsSortedByAmount() {
-    }
-
-    public static double calculatePayment(Member member) {
-        return 0;
-    }
 
     /**
      * De Payment objekter der bliver defineret i addPaymentToMember() bliver her føjet til ArrayListen
@@ -115,7 +100,7 @@ public class PaymentService {
     }
 
     /**
-     * Tager restance listen og sortere den efter beløbet og sætter hele ArrayListen i en String, så den printes pænt.
+     * Tager Restance listen og sortere den efter beløbet og sætter hele ArrayListen i en String, så den printes pænt.
      * @return Alle oplysningerne i "restanceList" som en String.
      */
     public static String sortByAmountAndConvertToString() {
@@ -135,7 +120,7 @@ public class PaymentService {
     }
 
     /**
-     * Kalder showPayment() på ArrayListen restanceList og skriver den til restance.csv.
+     * Kalder showPayment() på ArrayListen restanceList og skriver den til Restance.csv.
      */
     public static void printRestance() {
         PaymentService.showPayment(restanceList);

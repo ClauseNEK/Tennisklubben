@@ -162,7 +162,7 @@ public class CoachService {
 
     /**
      * Går igennem medlemslisten, finder alle de aktive konkurrencespillere og kalder addCompetitionPlayerToCSV(),
-     * der skriver dem til training_results.csv.
+     * der skriver dem til Training_results.csv.
      */
     public static void getCompetitionPlayers() {
         trainingResultList.removeAll(trainingResultList);

@@ -9,7 +9,7 @@ public class Payment implements Comparable<Payment>{
      * Opretter en ny betaling for et medlem.
      * @param memberID ID'et på medlemmet, som betalingen tilhører
      * @param payment betalingsbeløbet
-     * @param paymentStatus status for betalingen, fx betalt eller restance
+     * @param paymentStatus status for betalingen, fx betalt eller Restance
      */
 
     public Payment(int memberID, double payment, String paymentStatus) {

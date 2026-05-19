@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CashierUI {
 
-    /*Skal kasserne have mulighed for at redigere medlemmer i restance? Dette kan ske hvis man trykker 2 og
+    /*Skal kasserne have mulighed for at redigere medlemmer i Restance? Dette kan ske hvis man trykker 2 og
     opdatere hele listen, men der kunne være en mulighed for at ændre et enkelt medlem (ligesom i CoachUI).
     Det er dog ikke en del af opgave beskrivelsen.*/
 
@@ -17,8 +17,8 @@ public class CashierUI {
             System.out.println("\n === Kasserer ===");
             System.out.println("1. Vis liste over indbetalinger");
             System.out.println("2. Opdater liste over indbetalinger");
-            System.out.println("3. Oversigt over medlemmer i restance");
-            System.out.println("4. Sorter restance liste efter beløb"); //comparable sortering
+            System.out.println("3. Oversigt over medlemmer i Restance");
+            System.out.println("4. Sorter Restance liste efter beløb"); //comparable sortering
             System.out.println("5. Gå tilbage");
 
             try {
@@ -27,7 +27,6 @@ public class CashierUI {
                 switch (input) {
                     case 1:
                         PaymentService.printPayments();
-                        //PaymentService.showPayment(paymentList);
                         break;
                     case 2:
                         PaymentService.addPaymentToMember();
@@ -37,7 +36,6 @@ public class CashierUI {
                         PaymentService.printRestance();
                         break;
                     case 4:
-                        //PaymentService.showPaymentsSortedByAmount();
                         System.out.println(PaymentService.sortByAmountAndConvertToString());
                         break;
                     case 5:
@@ -51,7 +49,6 @@ public class CashierUI {
             }
 
         }
-
 
     }
 

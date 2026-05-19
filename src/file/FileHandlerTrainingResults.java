@@ -8,17 +8,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Håndterer læsning og skrivning af træningsresultater til CSV-filen training_results.
+ * Håndterer læsning og skrivning af træningsresultater til CSV-filen Training_results.
  * Klassen opdeler konkurrencespillere i lister efter medlemstype og disciplin.
  */
 public class FileHandlerTrainingResults {
 
-    final static String training_results = "src/csv/training_results";
+    final static String training_results = "src/csv/Training_results";
 
     public static ArrayList<CompetitionPlayer> trainingResultList = new ArrayList<>();
 
     /**
-     * Læser csv-filen "training_results" og gemmer den eksisterende data i diverse ArrayLister af konkurrencespiller,
+     * Læser csv-filen "Training_results" og gemmer den eksisterende data i diverse ArrayLister af konkurrencespiller,
      * som skal bruges i klassen "CoachService".
      */
     public void readTrainingResultsCSV() {
@@ -57,7 +57,7 @@ public class FileHandlerTrainingResults {
 
 
     /**
-     * Tager ArrayListen "trainingResultList" og skriver den til csv-filen "training_results".
+     * Tager ArrayListen "trainingResultList" og skriver den til csv-filen "Training_results".
      */
     public void writeToTrainingResultsFile() {
         try {

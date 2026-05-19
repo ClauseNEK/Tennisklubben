@@ -7,18 +7,18 @@ import java.io.*;
 import java.util.ArrayList;
 /**
  * Håndterer læsning og skrivning af betalinger og restancer til CSV-filer.
- * Klassen bruger paymentList til betalinger og restanceList til medlemmer i restance.
+ * Klassen bruger paymentList til betalinger og restanceList til medlemmer i Restance.
  */
 public class FileHandlerPayment {
 
-    final static String payments = "src/csv/payments";
-    final static String restance = "src/csv/restance";
+    final static String payments = "src/csv/Payments";
+    final static String restance = "src/csv/Restance";
 
     public static ArrayList<Payment> restanceList = new ArrayList<>();
     public static ArrayList<Payment> paymentList = new ArrayList<>();
 
     /**
-     * Læser betalinger fra CSV-filen payments og tilføjer dem til paymentList.
+     * Læser betalinger fra CSV-filen Payments og tilføjer dem til paymentList.
      *
      * @throws CsvFileException hvis filen ikke kan læses, eller hvis en linje har ugyldige data
      */
@@ -50,7 +50,7 @@ public class FileHandlerPayment {
                 }
             }
         } catch (IOException e) {
-            throw new CsvFileException("Kunne ikke læse payments filen: " + e.getMessage());
+            throw new CsvFileException("Kunne ikke læse Payments filen: " + e.getMessage());
         }
     }
 
@@ -83,18 +83,16 @@ public class FileHandlerPayment {
                 }
             }
         } catch (IOException e) {
-            throw new CsvFileException("Kunne ikke læse restance filen: " + e.getMessage());
+            throw new CsvFileException("Kunne ikke læse Restance filen: " + e.getMessage());
         }
     }
 
 
-    //Skriver arraylisten til csv filen "payments"
 
     /**
-     * Skriver alle betalinger fra paymentList til CSV-filen payments.
+     * Skriver alle betalinger fra paymentList til CSV-filen Payments.
      * @throws CsvFileException hvis der opstår en fejl under skrivning til filen
      */
-
     public static void writeToPaymentFile() {
         try {
             FileWriter fileWriter = new FileWriter(payments);
@@ -108,13 +106,13 @@ public class FileHandlerPayment {
             bufferedWriter.close();
 
         } catch (Exception e) {
-            throw new CsvFileException("Kunne ikke skrive til payments filen" + e.getMessage());
+            throw new CsvFileException("Kunne ikke skrive til Payments filen" + e.getMessage());
         }
 
     }
 
 
-    //Skriver arraylisten til csv filen "restance"
+    //Skriver arraylisten til csv filen "Restance"
     public static void writeToRestanceFile() {
         try {
             FileWriter fileWriter = new FileWriter(restance);
@@ -128,7 +126,7 @@ public class FileHandlerPayment {
             bufferedWriter.close();
 
         } catch (Exception e) {
-            throw new CsvFileException("Kunne ikke skrive til restance filen" + e.getMessage());
+            throw new CsvFileException("Kunne ikke skrive til Restance filen" + e.getMessage());
         }
     }
 

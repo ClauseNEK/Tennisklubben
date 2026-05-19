@@ -97,12 +97,6 @@ public class MemberService {
         }
     }
 
-    //Finder det næste medlemsID
-    //Den finder det seneste medlemsID i listen og lægger 1 til.
-    //Denne metode skal kaldes når der oprettes et nyt medlem (int memberID = getNextMemberID())
-    /*public static int getNextMemberID() {
-        return memberList.getLast().getMemberid()+1;
-    }*/
 
     /**
      * Vælger om medlemmet er konkurrencespiller eller motionist
@@ -177,7 +171,7 @@ public class MemberService {
                     case 1:
                         System.out.print("Indtast det nye navn: ");
                         String newName = scanner.nextLine();
-                        editMemberName(foundMember, newName); //Der skal kaldes en exception til hvis foundMember er null, notFound eller OutOfBounds
+                        editMemberName(foundMember, newName);
                         break;
                     case 2:
                         System.out.print("Indtast den nye alder: ");

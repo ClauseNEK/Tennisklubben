@@ -9,11 +9,6 @@ import java.util.Scanner;
 public class CoachUI {
     private static Logger logger = new ConsoleLogger();
 
-    /*
-    Coachen skal muligvis have en mulighed for at tilføje medlemmers disciplin så formanden opretter medlememt men
-    Coachen skal ku tildele disciplinen til medlemmet (Så det ikke sker hos formanden men hos coachen)
-    KIG PÅ SENERE
-     */
 
     public static void showCoach() {
         Scanner scanner = new Scanner(System.in);
@@ -33,12 +28,9 @@ public class CoachUI {
 
             switch (input) {
                 case 1:
-                    //CoachService.showTop5ByDiscipline();
                     CoachService.printTopFiveDisciplin();
                     break;
                 case 2:
-                    //CoachService.showTop5ByTrainingResult();
-                    //CoachService.sortJuniorListByResults();
                     CoachService.printSortedLists();
                     break;
                 case 3:

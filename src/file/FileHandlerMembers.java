@@ -1,14 +1,12 @@
 package file;
 
 import exceptions.CsvFileException;
-import exceptions.FileNotFoundException;
 import exceptions.InvalidAgeException;
 import model.*;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
-import java.io.File;
+
 /**
  * Håndterer læsning og skrivning af medlemmer til CSV-filen Members.
  * Klassen gemmer medlemmer i en fælles liste, som kan bruges af resten af programmet.
