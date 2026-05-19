@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * Repræsenterer en turnering i tennisklubben.
+ * Klassen gemmer turneringens ID, navn, dato, disciplin, spilkategori
+ * og en liste over ID'er på de medlemmer, der deltager i turneringen.
+ */
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,14 @@ public class Tournament {
     private List<Integer> participantIds;  // referencer til Member.memberid
 
     // Konstruktør til nye turneringer (auto-genererer ID)
+    /**
+     * Opretter en ny turnering og genererer automatisk et nyt turnerings-ID.
+     * Listen over deltagere starter som tom.
+     * @param name turneringens navn
+     * @param date datoen for turneringen
+     * @param disciplin turneringens disciplin, fx single eller double
+     * @param gameCategory turneringens spilkategori, fx motionist eller konkurrencespiller
+     */
     public Tournament(String name, LocalDate date, Disciplin disciplin, GameCategory gameCategory) {
         tournamentIdCounter++;
         this.tournamentId = tournamentIdCounter;
@@ -27,6 +39,17 @@ public class Tournament {
     }
 
     // Konstruktør til indlæsning fra CSV (bevarer eksisterende ID)
+    /**
+     * Opretter en turnering ud fra data, der er indlæst fra CSV.
+     * Det eksisterende turnerings-ID bevares, og ID-tælleren opdateres,
+     * så nye turneringer ikke får samme ID.
+     * @param tournamentId turneringens eksisterende ID
+     * @param name turneringens navn
+     * @param date datoen for turneringen
+     * @param disciplin turneringens disciplin, fx single eller double
+     * @param gameCategory turneringens spilkategori, fx motionist eller konkurrencespiller
+     * @param participantIds liste med medlems-ID'er for deltagere i turneringen
+     */
     public Tournament(int tournamentId, String name, LocalDate date, Disciplin disciplin,
                       GameCategory gameCategory, List<Integer> participantIds) {
         this.tournamentId = tournamentId;
@@ -55,16 +78,28 @@ public class Tournament {
     public void setDisciplin(Disciplin disciplin) { this.disciplin = disciplin; }
     public void setGameCategory(GameCategory gameCategory) { this.gameCategory = gameCategory; }
 
+    /**
+     * Tilføjer et medlem til turneringen, hvis medlemmet ikke allerede er tilføjet.
+     * @param memberId ID'et på medlemmet, der skal tilføjes
+     */
     public void addParticipant(int memberId) {
         if (!participantIds.contains(memberId)) {
             participantIds.add(memberId);
         }
     }
-
+    /**
+     * Fjerner et medlem fra turneringens deltagerliste.
+     * @param memberId ID'et på medlemmet, der skal fjernes
+     */
     public void removeParticipant(int memberId) {
         participantIds.remove(Integer.valueOf(memberId));  // OBS: Integer.valueOf, ikke int
     }
 
+    /**
+     * Konverterer turneringen til en CSV-linje.
+     * Deltager-ID'er adskilles med tegnet |, så de ikke kolliderer med kommaerne i CSV-formatet.
+     * @return turneringens oplysninger som CSV-linje
+     */
     public String toTournamentCSV() {
         // Deltagere adskilles med | så de ikke kolliderer med CSV's komma
         StringBuilder participants = new StringBuilder();
@@ -76,6 +111,10 @@ public class Tournament {
                 disciplin + "," + gameCategory + "," + participants;
     }
 
+    /**
+     * Returnerer en læsevenlig tekst med turneringens oplysninger.
+     * @return turneringen som tekst
+     */
     @Override
     public String toString() {
         return "Turnering #" + tournamentId + ": " + name

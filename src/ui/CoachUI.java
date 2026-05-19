@@ -23,7 +23,7 @@ public class CoachUI {
             System.out.println("\n === Coach ===");
             System.out.println("1. Top 5 (Disciplin)");
             System.out.println("2. Top 5 (Træningsresultat)");
-            System.out.println("3. Hvis træningsresultat for alle konkurrencespillere");
+            System.out.println("3. Vis træningsresultat for alle konkurrencespillere");
             System.out.println("4. Opdatere hele træningsresultat listen");
             System.out.println("5. Opdatere et enkelt træningsresultat");
             System.out.println("6. Turneringer");

@@ -5,7 +5,10 @@ import file.FileHandlerPayment;
 import file.FileHandlerTournaments;
 import file.FileHandlerTrainingResults;
 import ui.SmashUI;
-
+/**
+ * Programmets startklasse.
+ * Indeholder main-metoden, som starter tennisklubbens system.
+ */
 public class Main {
     void main(){
         //Start med at indlæse de eksisterende CSV filer
