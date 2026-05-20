@@ -13,7 +13,7 @@ public class CashierUI {
         boolean running = true;
 
         while(running) {
-            System.out.println("\n === Kasserer ===");
+            System.out.println(ConsoleStyle.YELLOW + "\n==== Kasserer 💰 ====" + ConsoleStyle.RESET);
             System.out.println("1. Vis liste over indbetalinger");
             System.out.println("2. Opdater liste over indbetalinger");
             System.out.println("3. Oversigt over medlemmer i Restance");
@@ -45,7 +45,7 @@ public class CashierUI {
                         running = false;
                         break;
                     default:
-                        System.out.println("Ukendt input. Indtast et tal mellem 1-5");
+                        ConsoleStyle.printError("Ukendt input. Indtast et tal mellem 1-5");
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
