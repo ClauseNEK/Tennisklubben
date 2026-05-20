@@ -15,7 +15,7 @@ public class CoachUI {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n === Coach ===");
+            System.out.println(ConsoleStyle.GREEN + "\n==== Coach 🎾 ====" + ConsoleStyle.RESET);
             System.out.println("1. Top 5 (Disciplin)");
             System.out.println("2. Top 5 (Træningsresultat)");
             System.out.println("3. Vis træningsresultat for alle konkurrencespillere");
@@ -99,7 +99,7 @@ public class CoachUI {
                     running = false;
                     break;
                 default:
-                    System.out.println("Ugyldigt valg. Vælg 1-7.");
+                    ConsoleStyle.printError("Ugyldigt valg. Vælg 1-7.");
                     break;
             }
         }

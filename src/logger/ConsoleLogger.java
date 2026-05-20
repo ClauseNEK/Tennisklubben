@@ -1,5 +1,7 @@
 package logger;
 
+import ui.ConsoleStyle;
+
 public class ConsoleLogger implements Logger {
 
     /**
@@ -8,7 +10,7 @@ public class ConsoleLogger implements Logger {
      */
     @Override
     public void confirmed(String message) {
-        System.out.println("[CONFIRMED] " + message); //"[CONFIRMED] " i grøn farve?
+        System.out.println(ConsoleStyle.GREEN + "[CONFIRMED] " + message + ConsoleStyle.RESET);
     }
 
     /**
@@ -17,6 +19,6 @@ public class ConsoleLogger implements Logger {
      */
     @Override
     public void warning(String message) {
-        System.out.println("[WARNING] " + message); //"[WARNING] " i rød farve?
+        System.out.println(ConsoleStyle.RED + "[WARNING] " + message + ConsoleStyle.RESET);
     }
 }

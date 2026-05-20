@@ -13,7 +13,7 @@ public class ChairmanUI {
         boolean running = true;
 
         while (running){
-            System.out.println("\n === Formand ===");
+            System.out.println(ConsoleStyle.BLUE + "\n==== Formand 👔 ====" + ConsoleStyle.RESET);
             System.out.println("1. Opret nyt medlem");
             System.out.println("2. Redigere medlem");
             System.out.println("3. Vis medlem (navn)");
@@ -49,7 +49,7 @@ public class ChairmanUI {
                         running = false;
                         break;
                     default:
-                        System.out.println("Fejl valg: Vælg et tal mellem 1-6");
+                        ConsoleStyle.printError("Fejl valg: Vælg et tal mellem 1-6");
                 }
             } catch (Exception e){
                 throw new RuntimeException(e);
