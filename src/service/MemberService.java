@@ -69,7 +69,6 @@ public class MemberService {
     }
 
 
-
     /**
      * Vælger om medlemskabet skal være aktivt eller passivt
      * @param scanner Bruger Scanner til at vælge mellem mulighederne

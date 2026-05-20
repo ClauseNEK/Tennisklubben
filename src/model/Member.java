@@ -8,7 +8,7 @@ import logger.*;
 public abstract class Member implements Membership  {
 
     private String name;
-    private int age; //Implementer fødselsdags dato
+    private int age;
     private boolean activeMembership;
     private int memberid;
     private static int memberIDCounter = 0;

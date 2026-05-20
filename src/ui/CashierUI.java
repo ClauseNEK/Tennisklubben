@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class CashierUI {
 
+    /**
+     * Hvis "Kasserer" bliver valgt i SmashUI, bliver denne menu og kasserernes meuligheder fremvist.
+     */
     public static void showCashier(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

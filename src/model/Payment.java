@@ -11,7 +11,6 @@ public class Payment implements Comparable<Payment>{
      * @param payment betalingsbeløbet
      * @param paymentStatus status for betalingen, fx betalt eller Restance
      */
-
     public Payment(int memberID, double payment, String paymentStatus) {
         this.memberID = memberID;
         this.payment = payment;

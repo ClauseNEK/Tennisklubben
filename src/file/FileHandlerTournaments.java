@@ -18,7 +18,10 @@ public class FileHandlerTournaments {
     final static String tournaments = "src/csv/Tournaments";
     public static ArrayList<Tournament> tournamentList = new ArrayList<>();
 
-    // Skriver arraylisten til csv filen "Tournaments"
+
+    /**
+     * Tager arraylisten "tournamentList" og skriver den til csv filen "Tournaments"
+     */
     public void writeToFile() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tournaments))) {
             for (Tournament tournament : tournamentList) {
@@ -30,7 +33,6 @@ public class FileHandlerTournaments {
         }
     }
 
-    // Læser CSV filen "Tournaments"
     /**
      * Læser turneringer fra CSV-filen Tournaments og tilføjer dem til tournamentList.
      * Metoden læser også deltager-ID'er, hvis de findes på linjen.

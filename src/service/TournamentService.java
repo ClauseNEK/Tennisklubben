@@ -22,7 +22,6 @@ public class TournamentService {
      Opretter en ny turnering ud fra brugerens indtastninger og gemmer den til Tournaments.csv.
      @param scanner Scanner bruges til at indtaste turneringens stamoplysninger.
      */
-
     public static void createTournament(Scanner scanner) {
         System.out.print("Navn på turneringen: ");
         String name = scanner.nextLine();
