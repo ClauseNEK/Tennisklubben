@@ -5,10 +5,6 @@ import java.util.Scanner;
 
 public class CashierUI {
 
-    /*Skal kasserne have mulighed for at redigere medlemmer i Restance? Dette kan ske hvis man trykker 2 og
-    opdatere hele listen, men der kunne være en mulighed for at ændre et enkelt medlem (ligesom i CoachUI).
-    Det er dog ikke en del af opgave beskrivelsen.*/
-
     public static void showCashier(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
