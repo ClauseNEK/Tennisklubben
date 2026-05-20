@@ -19,7 +19,8 @@ public class CashierUI {
             System.out.println("2. Opdater liste over indbetalinger");
             System.out.println("3. Oversigt over medlemmer i Restance");
             System.out.println("4. Sorter Restance liste efter beløb"); //comparable sortering
-            System.out.println("5. Gå tilbage");
+            System.out.println("5. Rediger medlem i restance");
+            System.out.println("6. Gå tilbage");
 
             try {
                 int input = Integer.parseInt(scanner.nextLine());
@@ -39,6 +40,9 @@ public class CashierUI {
                         System.out.println(PaymentService.sortByAmountAndConvertToString());
                         break;
                     case 5:
+                        PaymentService.editRestance(scanner);
+                        break;
+                    case 6:
                         running = false;
                         break;
                     default:

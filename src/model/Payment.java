@@ -43,6 +43,14 @@ public class Payment implements Comparable<Payment>{
     }
 
     /**
+     * Giver lov til at sette medlemmets betalingsstatus.
+     * @param paymentStatus Tager en String, som input (Betalt/Ikke betalt)
+     */
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    /**
      * Konverterer betalingen til en tekststreng, der kan gemmes i en CSV-fil.
      * @return betalingens oplysninger som CSV-linje
      */

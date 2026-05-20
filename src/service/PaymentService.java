@@ -1,6 +1,9 @@
 package service;
 
+import exceptions.MemberNotFoundException;
 import file.FileHandlerPayment;
+import logger.ConsoleLogger;
+import logger.Logger;
 import model.*;
 
 import java.util.ArrayList;
@@ -13,9 +16,11 @@ import static file.FileHandlerPayment.*;
 public class PaymentService {
 
     public static Scanner scanner = new Scanner(System.in);
+    private static Logger logger = new ConsoleLogger();
 
     public static void addPaymentToMember(){
-
+        paymentList.removeAll(paymentList);
+        restanceList.removeAll(restanceList);
         for(Member member : memberList) {
             System.out.print(member.getMemberType() + " " + member.getName() + "\n");
             String paymentStatus = choosePaymentStatus(scanner);
@@ -127,5 +132,52 @@ public class PaymentService {
         FileHandlerPayment.writeToRestanceFile();
     }
 
+    /**
+     * Giver kasserene lov til at redigere et medlem i restance fra "Ikke betalt" til "Betalt" og fjerner dem
+     * fra restanceList og opdatere paymentList.
+     * @param scanner Bruger Scanner til at tage imod et medlemsID, som medlemmet i restance vil blive fundet
+     *                og opdateret ud fra
+     */
+    public static void editRestance(Scanner scanner) {
+        printRestance();
+        System.out.print("Indtast medlemsID på det medlem i Restance du gerne vil redigere." +
+                "\nBetalingsstatus vil blive sat til \"Betalt\" på det valgte medlem: ");
+        int findID = scanner.nextInt();
+        Payment paymentMember = findPaymentMember(findID);
 
+        restanceList.remove(paymentMember);
+        searchPaymentList(findID);
+        scanner.nextLine();
+        logger.confirmed("\n\033[3mBetalingsstatus opdateret\033[0m");
+
+        FileHandlerPayment.writeToPaymentFile();
+    }
+
+
+    /**
+     * Går igennem restanceList og returnere en payment, der er knyttet til det medlem, der matcher memberID
+     * @param memberID Finder paymenten ud fra medlemsID'et i restanceList
+     * @return payment ud fra det indtastet medlemsID
+     */
+    public static Payment findPaymentMember(int memberID) {
+        for(Payment paymentMember : restanceList) {
+            if(memberID == paymentMember.getMemberID()) {
+                return paymentMember;
+            }
+        }
+        throw new MemberNotFoundException("Intet medlem fundet med ID " + memberID);
+    }
+
+    /**
+     * Går igennem paymentList og finder medlemmet, der skal redigeres i og ændre deres betalingsstatus til "Betalt"
+     * @param memberID Finder paymenten/medlemmet ud fra medlemsID'et i paymentList
+     */
+    public static void searchPaymentList(int memberID) {
+        for(Payment payment : paymentList) {
+            if(memberID == payment.getMemberID()) {
+                payment.setPaymentStatus("Betalt");
+            }
+        }
+        //throw new MemberNotFoundException("Intet medlem fundet med ID " + memberID);
+    }
 }
