@@ -13,7 +13,7 @@ public class SmashUI {
             ConsoleStyle.printMenuLine(ConsoleStyle.BLUE, 1, "Formand", "👔");
             ConsoleStyle.printMenuLine(ConsoleStyle.YELLOW, 2, "Kasserer", "💰");
             ConsoleStyle.printMenuLine(ConsoleStyle.GREEN, 3, "Coach", "🎾");
-            ConsoleStyle.printMenuLine(ConsoleStyle.RED, 4, "Luk program", "🚪");
+            ConsoleStyle.printMenuLine(ConsoleStyle.GREY, 4, "Luk program", "\uD83D\uDD1A");
             System.out.print(ConsoleStyle.WHITE + "> " + ConsoleStyle.RESET);
             try{
                 int input = Integer.parseInt(scanner.nextLine());
