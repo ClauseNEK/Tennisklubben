@@ -40,8 +40,8 @@ public class SmashUI {
                     default:
                         ConsoleStyle.printError("Fejl valg: Vælg et tal mellem 1-4");
                 }
-            } catch (Exception e){
-                throw new RuntimeException(e);
+            } catch (NumberFormatException e){
+                ConsoleStyle.printError("Indtast venligst et tal.");
             }
         }
     }

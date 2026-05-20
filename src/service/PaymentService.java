@@ -62,26 +62,23 @@ public class PaymentService {
      * @return En String der siger "Betalt" eller "Ikke betalt".
      */
     public static String choosePaymentStatus(Scanner scanner) {
-        String status = "";
-        int input;
-
-        //while(true) {
-        System.out.println("Vælg betalingsstatus:\n1.Betalt\n2.Ikke betalt");
-        input = scanner.nextInt();
-
-        switch (input) {
-            case 1:
-                status = "Betalt";
-                break;
-            case 2:
-                status = "Ikke betalt";
-                break;
-            default:
-                System.out.println("Ukendt input. Tryk 1 eller 2.");
+        while (true) {
+            System.out.println("Vælg betalingsstatus:\n1.Betalt\n2.Ikke betalt");
+            try {
+                int input = scanner.nextInt();
+                switch (input) {
+                    case 1:
+                        return "Betalt";
+                    case 2:
+                        return "Ikke betalt";
+                    default:
+                        System.out.println("Ukendt input. Tryk 1 eller 2.");
+                }
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Fejl: Indtast venligst 1 eller 2.");
+                scanner.nextLine();  //Ryd buffer så vi kan prøve igen
+            }
         }
-        //}
-        return status;
-
     }
 
     /**

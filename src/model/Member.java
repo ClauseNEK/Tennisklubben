@@ -3,6 +3,7 @@ package model;
 import exceptions.InvalidAgeException;
 import validation.AgeValidator;
 import logger.*;
+import validation.MemberAgeValidator;
 
 //Abstract klasse
 public abstract class Member implements Membership  {
@@ -35,8 +36,9 @@ public abstract class Member implements Membership  {
         this.name = name;
         this.age = age;
         this.activeMembership = activeMembership;
-        this.gameCategory = gameCategory;
         this.disciplin = disciplin;
+        this.gameCategory = gameCategory;
+        this.validator = new MemberAgeValidator();
     }
 
     /**

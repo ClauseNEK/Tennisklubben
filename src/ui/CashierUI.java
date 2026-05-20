@@ -47,8 +47,10 @@ public class CashierUI {
                     default:
                         ConsoleStyle.printError("Ukendt input. Indtast et tal mellem 1-5");
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            } catch (NumberFormatException e) {
+                ConsoleStyle.printError("Indtast venligst et tal.");
+            } catch (exceptions.MemberNotFoundException e) {
+                System.out.println("Fejl: " + e.getMessage());
             }
 
         }
