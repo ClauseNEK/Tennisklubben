@@ -1,48 +1,70 @@
-TennisklubbemSmash
+TennisklubbenSmash
 │
 ├── main
 │   └── Main.java
 │
 ├── ui
-│   └── MenuUI.java
+│   ├── CashierUI.java
+│   ├── ChairmanUI.java
+│   ├── CoachUI.java
+│   ├── ConsoleStyle.java
+│   └── SmashUI.java
 │
 ├── model
-│   ├── model.Member.java          -- Abstarct klasse
-│   ├── ActiveMember.java    -- Interface
-│   ├── PassiveMember.java      Interface
-│   ├── JuniorMember.java    -- Subklasse
-│   ├── SeniorMember.java    -- Subklasse
-│   ├── ExerciseMember.java     Interface
-│   ├── CompetitionPlayer.java  Interface
-│   ├── TrainingResult.java
-│   ├── Tournament.java
-│   └── Payment.java
+│   ├── CompetitionPlayer.java
+│   ├── Disciplin.java
+│   ├── GameCategory.java
+│   ├── Junior.java
+│   ├── Member.java
+│   ├── Membership.java
+│   ├── Payment.java
+│   ├── Senior.java
+│   └── Tournament.java
 │
-├── service (Tilføjet)
+├── service
+│   ├── CoachService.java
 │   ├── MemberService.java
 │   ├── PaymentService.java
-│   └── CoachService.java
+│   └── TournamentService.java
 │
 ├── file
-│   ├── CsvReader.java
-│   └── CsvWriter.java
+│   ├── FileHandlerMembers.java
+│   ├── FileHandlerPayment.java
+│   ├── FileHandlerTournaments.java
+│   └── FileHandlerTrainingResults.java
 │
 ├── util
-│   ├── MemberComparator.java
-│   ├── PaymentComparator.java
-│   ├── InputValidator.java
-│   └── logger.java
+│   ├── MemberAgeComparator.java
+│   └── MemberNameComparator.java
 │
-├── interfaces
-│   ├── Payable.java
-│   └── Rankable.java
+├── validation
+│   ├── AgeValidator.java
+│   ├── InputValidator.java
+│   └── MemberAgeValidator.java
+│
+├── logger
+│   ├── ConsoleLogger.java
+│   └── Logger.java
 │
 ├── exceptions
-│   ├── MemberNotFoundException.java
+│   ├── CsvFileException.java
+│   ├── FileNotFoundException.java
 │   ├── InvalidAgeException.java
-│   └── CsvFileException.java
+│   ├── MemberNotFoundException.java
+│   └── TournamentNotFoundException.java
+│
+└── csv
+    ├── Members.csv
+    ├── Payments.csv
+    ├── Restance.csv
+    ├── Tournaments.csv
+    └── Training_results.csv
+
+
+Unit testing
 │
 └── test
-    ├── MemberServiceTest.java
-    ├── PaymentServiceTest.java
-    └── CsvReaderTest.java
+    ├── CompetitionPlayerTest.java
+    ├── MemberTest.java
+    ├── CoachServiceTest.java
+    └── ChairmanTest.java
