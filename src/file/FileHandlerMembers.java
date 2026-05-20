@@ -17,10 +17,6 @@ public class FileHandlerMembers {
     public static ArrayList<Member> memberList = new ArrayList<>();
 
 
-        //Skriver arraylisten til csv filen "members"
-    // Tilføjet: Exception
-    // Rettet: BufferedWriter oppe i paramteren)
-
     /**
      * Skriver alle medlemmer fra memberList til CSV-filen Members.
      * Hvert medlem konverteres til CSV-format med metoden toMemberCSV().
@@ -84,7 +80,11 @@ public class FileHandlerMembers {
         }
     }
 
-    //Tilføjer et medlem til ArrayListen og skriver den til CVS filen
+
+    /**
+     * Tilføjer et medlem til ArrayListen og skriver den til CVS filen
+     * @param member Medlemmet, der skal føjes til ArrayListen og csv filen.
+     */
     public void addMemberToFile(Member member) {
         memberList.add(member);
         writeToFile();

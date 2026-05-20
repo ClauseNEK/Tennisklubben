@@ -9,7 +9,9 @@ import java.util.Scanner;
 public class CoachUI {
     private static Logger logger = new ConsoleLogger();
 
-
+    /**
+     * Hvis "Coach" bliver valgt i SmashUI, bliver denne menu med Coachens muligheder fremvist.
+     */
     public static void showCoach() {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

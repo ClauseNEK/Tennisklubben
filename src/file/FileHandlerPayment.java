@@ -19,7 +19,6 @@ public class FileHandlerPayment {
 
     /**
      * Læser betalinger fra CSV-filen Payments og tilføjer dem til paymentList.
-     *
      * @throws CsvFileException hvis filen ikke kan læses, eller hvis en linje har ugyldige data
      */
     public void readPaymentsCSV() {
@@ -55,6 +54,9 @@ public class FileHandlerPayment {
     }
 
 
+    /**
+     * Læser csv filen "restance" og tilføjer indholdet til ArrayListen "restanceList".
+     */
     public void readRestanceCSV() {
         try(BufferedReader reader = new BufferedReader(new FileReader(restance))) {
             String line;
@@ -88,7 +90,6 @@ public class FileHandlerPayment {
     }
 
 
-
     /**
      * Skriver alle betalinger fra paymentList til CSV-filen Payments.
      * @throws CsvFileException hvis der opstår en fejl under skrivning til filen
@@ -111,8 +112,9 @@ public class FileHandlerPayment {
 
     }
 
-
-    //Skriver arraylisten til csv filen "Restance"
+    /**
+     * Skriver arraylisten "restanceList" til csv filen "Restance"
+     */
     public static void writeToRestanceFile() {
         try {
             FileWriter fileWriter = new FileWriter(restance);

@@ -19,8 +19,8 @@ public class Tournament {
     private GameCategory gameCategory;
     private List<Integer> participantIds;  // referencer til Member.memberid
 
-    // Konstruktør til nye turneringer (auto-genererer ID)
     /**
+     * Konstruktør til nye turneringer (auto-genererer ID).
      * Opretter en ny turnering og genererer automatisk et nyt turnerings-ID.
      * Listen over deltagere starter som tom.
      * @param name turneringens navn
@@ -38,8 +38,9 @@ public class Tournament {
         this.participantIds = new ArrayList<>();
     }
 
-    // Konstruktør til indlæsning fra CSV (bevarer eksisterende ID)
+
     /**
+     * Konstruktør til indlæsning fra CSV (bevarer eksisterende ID).
      * Opretter en turnering ud fra data, der er indlæst fra CSV.
      * Det eksisterende turnerings-ID bevares, og ID-tælleren opdateres,
      * så nye turneringer ikke får samme ID.
@@ -64,18 +65,66 @@ public class Tournament {
         this.participantIds = participantIds;
     }
 
-    // Getters
+    /**
+     * Getter for turneringens ID
+     * @return "tournamentId" som en int.
+     */
     public int getTournamentId() { return tournamentId; }
+
+    /**
+     * Getter for turneringens navn
+     * @return "name" som String
+     */
     public String getName() { return name; }
+
+    /**
+     * Getter for turneringens dato
+     * @return "date" som LocalDate
+     */
     public LocalDate getDate() { return date; }
+
+    /**
+     * Getter for turneringens disciplin.
+     * @return "disciplin" som Enum(Disciplin).
+     */
     public Disciplin getDisciplin() { return disciplin; }
+
+    /**
+     * Getter for turneringens spilkategori.
+     * @return "gameCategory" som Enum(GameCategory).
+     */
     public GameCategory getGameCategory() { return gameCategory; }
+
+    /**
+     * Getter for liste med medlems-ID'er for deltagere i turneringen.
+     * @return listen "participantIds".
+     */
     public List<Integer> getParticipantIds() { return participantIds; }
 
     // Setters
+
+    /**
+     * Setter for turneringens navn.
+     * @param name Turneringens navn.
+     */
     public void setName(String name) { this.name = name; }
+
+    /**
+     * Setter for turneringens dato
+     * @param date Turneringens dato.
+     */
     public void setDate(LocalDate date) { this.date = date; }
+
+    /**
+     * Setter for turneringens disciplin.
+     * @param disciplin Turneringens disciplin.
+     */
     public void setDisciplin(Disciplin disciplin) { this.disciplin = disciplin; }
+
+    /**
+     * Setter for turneringens spilkategori.
+     * @param gameCategory Turneringens spilkategori.
+     */
     public void setGameCategory(GameCategory gameCategory) { this.gameCategory = gameCategory; }
 
     /**
@@ -87,6 +136,7 @@ public class Tournament {
             participantIds.add(memberId);
         }
     }
+
     /**
      * Fjerner et medlem fra turneringens deltagerliste.
      * @param memberId ID'et på medlemmet, der skal fjernes

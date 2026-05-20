@@ -18,6 +18,10 @@ public class PaymentService {
     public static Scanner scanner = new Scanner(System.in);
     private static Logger logger = new ConsoleLogger();
 
+    /**
+     * Læser medlemslisten igennem og tilføjer en kontingentbetaling til hvert medlem.
+     * Kontingentbetalingen bliver beregnet ud fra om deres alder, samt om medlemskab er passiv eller aktivt.
+     */
     public static void addPaymentToMember(){
         paymentList.removeAll(paymentList);
         restanceList.removeAll(restanceList);
@@ -43,12 +47,20 @@ public class PaymentService {
 
     }
 
-
+    /**
+     * Rabatten for medlemmer over 60år beregnes her.
+     * @return Rabatten, som bruges i addPaymentToMember().
+     */
     public static double sixtyPlusDiscount(){
         return 1500*0.25;
     }
 
 
+    /**
+     * Her sættes betalingsstatussen om den er betalt eller ikke betalt.
+     * @param scanner Bruger inputtet fra Scanner til at sætte betalingsstatussen.
+     * @return En String der siger "Betalt" eller "Ikke betalt".
+     */
     public static String choosePaymentStatus(Scanner scanner) {
         String status = "";
         int input;
@@ -178,6 +190,5 @@ public class PaymentService {
                 payment.setPaymentStatus("Betalt");
             }
         }
-        //throw new MemberNotFoundException("Intet medlem fundet med ID " + memberID);
     }
 }

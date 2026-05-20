@@ -3,7 +3,12 @@ package ui;
 import java.util.Scanner;
 
 public class SmashUI {
+
     Scanner scanner = new Scanner(System.in);   // Scanner objekt
+
+    /**
+     * Metoden der starter vores program og fremviser de muligheder/roller, som brugeren kan vælge.
+     */
     public void start(){
         boolean running = true;
 

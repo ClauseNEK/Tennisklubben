@@ -8,6 +8,9 @@ import static file.FileHandlerMembers.memberList;
 
 public class ChairmanUI {
 
+    /**
+     * Hvis "Formand" bliver valgt i SmashUI, bliver denne menu med formandens muligheder fremvist.
+     */
     public static void showChairman(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;

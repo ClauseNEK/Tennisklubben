@@ -136,30 +136,6 @@ public class CoachService {
     }
 
 
-    public static void showTop5ByDiscipline() {
-        System.out.println("Top 5 efter disciplin:");
-
-        for (Member member : memberList) {
-            System.out.println(
-                    member.getMemberid() + " - " +
-                            member.getName() + " - " +
-                            member.getDisciplin()
-            );
-        }
-    }
-
-    public static void showTop5ByTrainingResult() {
-        System.out.println("Top 5 efter træningsresultat:");
-
-        for (Member member : memberList) {
-            System.out.println(
-                    member.getMemberid() + " - " +
-                            member.getName()
-            );
-        }
-    }
-
-
     /**
      * Går igennem medlemslisten, finder alle de aktive konkurrencespillere og kalder addCompetitionPlayerToCSV(),
      * der skriver dem til Training_results.csv.
@@ -214,11 +190,6 @@ public class CoachService {
         trainingResultList.add(competitionPlayer);
 
         handlerTrainingResults.writeToTrainingResultsFile();
-    }
-
-
-    public void addResultAndDateToMember() {
-
     }
 
     /**
