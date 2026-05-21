@@ -50,20 +50,18 @@ public class MemberService {
      * @return Alderen som en int
      */
     public static int chooseAge(Scanner scanner) {
-        int age;
+        MemberAgeValidator validator = new MemberAgeValidator();
         while (true) {
             try {
                 System.out.print("Alder på medlemmet: ");
-                if(scanner.hasNext()) {
-                    age = scanner.nextInt();
-                    if (age < 0 || age > 120) {
-                        throw new InvalidAgeException("Ugyldig alder! Et medlem skal være mellem 0 og 120år");
-                    } else {
-                        return age;
-                    }
-                }
+                int age = scanner.nextInt();
+                validator.validate(age);  //Genbruger den centrale aldersregel
+                return age;
             } catch (InvalidAgeException e) {
-                System.out.println("Fejl: Ugyldig alder. Et medlem skal være mellem 0 og 120år");
+                System.out.println("Fejl: " + e.getMessage());
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Fejl: Indtast venligst et tal.");
+                scanner.nextLine();  //Ryd buffer så vi kan prøve igen
             }
         }
     }
@@ -273,16 +271,16 @@ public class MemberService {
      * @param memberArrayList ArrayListen der skal printes ud som en String
      */
     public static void showList(ArrayList<Member> memberArrayList) {
-            String allMembers = "";
+        String allMembers = "";
 
-            if(memberArrayList.isEmpty()) {
-                System.out.println("Listen er tom");
-            } else {
-                for (Member member : memberArrayList) {
-                    allMembers = allMembers.concat(member.toString() + "\n");
-                }
-                System.out.println(allMembers);
+        if(memberArrayList.isEmpty()) {
+            System.out.println("Listen er tom");
+        } else {
+            for (Member member : memberArrayList) {
+                allMembers = allMembers.concat(member.toString() + "\n");
             }
+            System.out.println(allMembers);
+        }
     }
 
     /**

@@ -3,6 +3,7 @@ package file;
 import exceptions.CsvFileException;
 import exceptions.InvalidAgeException;
 import model.*;
+import validation.MemberAgeValidator;
 import java.io.*;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -56,10 +57,7 @@ public class FileHandlerMembers {
                     String name = parts[0];
                     int age = Integer.parseInt(parts[1]);
 
-                    if (age < 0 || age > 120) {
-                        throw new InvalidAgeException(
-                                "Ugyldig alder (" + age + ") på linje " + linenumber);
-                    }
+                    new MemberAgeValidator().validate(age);  //Kaster InvalidAgeException ved ugyldig alder
 
                     boolean activeMembership = parts[2].equalsIgnoreCase("aktiv");
                     Disciplin disciplin = Disciplin.valueOf(parts[4]);

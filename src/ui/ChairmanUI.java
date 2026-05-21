@@ -54,8 +54,10 @@ public class ChairmanUI {
                     default:
                         ConsoleStyle.printError("Fejl valg: Vælg et tal mellem 1-6");
                 }
-            } catch (Exception e){
-                throw new RuntimeException(e);
+            } catch (NumberFormatException e){
+                ConsoleStyle.printError("Indtast venligst et tal.");
+            } catch (exceptions.MemberNotFoundException e){
+                System.out.println("Fejl: " + e.getMessage());
             }
         }
     }
